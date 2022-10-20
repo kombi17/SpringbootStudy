@@ -16,6 +16,13 @@ public class User implements UserDetails{
 	private String userId;
 	private String userPw;
 	private String userName;
+	private String userNickname;
+	private String userGender;
+	private String userHobby;
+	private String userEmail;
+	private String userTel;
+	private String userAddress;
+	private String userAddressDetail;
 	private String userAuth;
 	private String appendDate;
 	private String updateDate;

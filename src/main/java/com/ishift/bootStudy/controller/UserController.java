@@ -152,7 +152,9 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("checkPw")
-	public String checkPw(Principal principal, String userPw) {
+	public String checkPw(Principal principal, String userPw,
+			Model model
+			) {
 		
 		// 회원 번호 얻어오기
 		String userId = principal.getName();
@@ -162,6 +164,17 @@ public class UserController {
 		
 		// 현재 비밀번호 확인 후 비교
 		int result = userService.checkPw(userNo, userPw);
+		
+		if(result == 0) {
+			// 비밀번호 불일치
+			String errorMsg = "비밀번호가 불일치합니다, 다시 시도해주세요.";
+			
+			model.addAttribute("errorMsg", errorMsg);
+			
+			return "checkPw";
+		} else {
+			
+		}
 		
 		
 		return "changePw";

@@ -47,14 +47,54 @@ uri="http://www.springframework.org/security/tags" %>
                   autocomplete="off"
                 />
               </div>
+
               <div class="input-content">
                 <label for="userPw">PW</label>
                 <input type="password" id="userPw" name="userPw" />
               </div>
+
               <div class="input-content">
                 <label for="userName">이름</label>
                 <input type="text" id="userName" name="userName" autocomplete="off" />
               </div class="input-content">
+
+              <div class="input-content">
+                <label for="userNickname">닉네임</label>
+                <input type="text" id="userNickname" name="userNickname" autocomplete="off" />
+              </div class="input-content">
+
+              <div class="input-content">
+                <label for="userGender">성별</label>
+                <input type="checkbox" id="userGender" name="userGender" />
+              </div class="input-content">
+
+              <div class="input-content">
+                <label for="userHobby">취미</label>
+                <input type="checkbox" id="userHobby" name="userHobby" />
+              </div class="input-content">
+
+              <div class="input-content">
+                <label for="userEmail">E-mail</label>
+                <input type="text" id="userEmail" name="userEmail" autocomplete="off" />
+              </div class="input-content">
+
+              <div class="input-content">
+                <label for="userTel">전화번호</label>
+                <input type="text" id="userTel" name="userTel" autocomplete="off" />
+              </div class="input-content">
+
+              <!-- API 사용 -->
+              <div class="input-content">
+                <label for="userAddress">주소</label>
+                <input type="text" id="userAddress" name="userAddress" autocomplete="off" />
+              </div class="input-content">
+
+              <!-- 입력 -->
+              <div class="input-content">
+                <label for="userAddressDetail">상세주소</label>
+                <input type="text" id="userAddressDetail" name="userAddressDetail" autocomplete="off" />
+              </div class="input-content">
+
               <button type="submit" class="submit-btn">회원 가입</button>
             </form>
           </div>

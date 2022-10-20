@@ -18,14 +18,12 @@
           ><i class="fa-regular fa-rectangle-list"></i> User List</a
         >
       </div>
-      <div class="sidebar-menu">
-        <a href="/user/checkPwForm"
-          ><i class="fa-solid fa-key"></i> Change Pw</a
-        >
+      <!-- <div class="sidebar-menu">
+        <a href="/user/changePw"><i class="fa-solid fa-key"></i> Change Pw</a>
       </div>
       <div class="sidebar-menu">
-        <a href="/user/checkPwForm"><i class="fa-solid fa-user"></i> My Info</a>
-      </div>
+        <a href="/user/changeInfo"><i class="fa-solid fa-user"></i> My Info</a>
+      </div> -->
       <div class="sidebar-menu">
         <a href="/logout" id="logout-btn"
           ><i class="fa-regular fa-circle-xmark"></i> logout</a
