@@ -1,0 +1,38 @@
+.input-content {
+  display: flex;
+  margin-top: 27px;
+  align-items: center;
+}
+
+.input-content > input {
+  font-size: 17px;
+  outline: none;
+  border: none;
+
+  margin: 0 5px;
+  padding: 0 6px;
+}
+
+.input-content > input:focus {
+  border-bottom: 2px solid tomato;
+}
+
+#saveIdCheckbox {
+  text-align: end;
+}
+
+.submit-btn {
+  margin-top: 27px;
+
+  background-color: tomato;
+  color: white;
+
+  font-size: 27px;
+  font-weight: bolder;
+  font-family: "Silkscreen", "Poor Story";
+
+  border: none;
+  border-radius: 15px;
+
+  width: 100%;
+}

@@ -1,0 +1,74 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.4'
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.ishift'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	// mybatis 사용을 위한 dependencies
+	// 기존 DataSource 자동 감지
+	// SqlSessionFactoryBean을 사용하여 해당 DataSource를 전달하는 SqlSessionFactory의 인스턴스 생성과 등록
+	// SqlSessionFactory에서 나온 SqlSessionTemplate의 인스턴스 생성과 등록
+	// mapper를 자동 스캔하여 SqlSessionTemplate에 연결하고 Spring Context에 등록하여 bean에 주입
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+	
+	// mariaDB 
+	// runtimeOnly : 해당 라이브러리가 런타임시에만 필요한 경우 사용 
+	// (cf. 컴파일시에만 필요한 경우 compileOnly)
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	
+	// DB 관련
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.mybatis:mybatis-typehandlers-jsr310'
+	implementation 'org.mybatis:mybatis-spring'
+
+	// 롬복 사용을 위한 dependencies
+	// compileOnly : 해당 라이브러리가 컴파일 단계에서만 필요한 경우 사용
+	// annotationProcessor : 컴파일 단계에서 어노테이션을 분석하고 처리하기 위해 사용
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	
+	// jsp 연동을 위한 dependencies
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	
+	// war 관련
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	// Devtools : 서버 재시작 없이도 클래스 변경 시 서버가 자동으로 재기동
+	// developmentOnly : 개발 환경에서만 적용되는 설정, 운영환경에서 배포되는 jar, war 파일에는 developmentOnly로 설치된 라이브러리는 제외
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// jstl 사용을 위한 dependencies
+	implementation 'javax.servlet:jstl'
+	
+	// 스프링 시큐리티를 위한 dependencies
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+	implementation 'org.springframework.security:spring-security-taglibs'
+	
+	
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

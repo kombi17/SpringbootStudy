@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.container {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 37px;
+  grid-auto-rows: minmax(30px, auto);
+
+  width: 70%;
+
+  row-gap: 1px;
+  column-gap: 1px;
+
+  background-color: tomato;
+}
+
+.item {
+  background-color: white;
+
+  font-size: 17px;
+  text-align: center;
+}
+
+.columnTitle {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 3px;
+  padding-bottom: 3px;
+}

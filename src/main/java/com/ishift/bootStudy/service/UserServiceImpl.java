@@ -1,0 +1,89 @@
+package com.ishift.bootStudy.service;
+
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ishift.bootStudy.dao.UserDAOImpl;
+// import com.ishift.bootStudy.mapper.UserMapper;
+import com.ishift.bootStudy.model.vo.User;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserDetailsService, UserService{
+	// 회원가입 시 저장시간을 넣어줄 DateTime형
+    SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:sss");
+    Date time = new Date();
+    String localTime = format.format(time);
+
+//    @Autowired
+//    UserMapper userMapper;
+
+    @Autowired
+    UserDAOImpl userMapper;
+    
+    @Transactional
+    public void joinUser(User user){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setUserPw(passwordEncoder.encode(user.getUserPw()));
+        user.setUserAuth("USER");
+        user.setAppendDate(localTime);
+        user.setUpdateDate(localTime);
+        userMapper.saveUser(user);
+    }
+    
+	@Override
+	public User loadUserByUsername(String userId) throws UsernameNotFoundException {
+		//여기서 받은 유저 패스워드와 비교하여 로그인 인증
+		User user = userMapper.getUserAccount(userId);
+        if (user == null){
+            throw new UsernameNotFoundException(userId);
+        }
+        return user;
+	}
+	
+	/**
+	 * 회원 목록 조회
+	 * @return
+	 */
+	@Override
+	public List<User> selectAllUser(){
+		return userMapper.selectAllUser();
+	}
+	
+	/**
+	 * 로그인 한 회원 정보 조회
+	 * @param userId 
+	 * @return
+	 */
+	@Override
+	public User selectLoginUser(String userId) {
+		return userMapper.selectLoginUser(userId);
+	}
+
+	/**
+	 * 로그인 한 회원의 현재 비밀번호 조회
+	 * 사용자가 입력한 비밀번호와 현재 비밀번호 비교
+	 * @return result
+	 */
+	@Override
+	public int checkPw(int userNo, String userPw) {
+		
+		String currentPw = userMapper.checkPw(userNo);
+		
+		return 0;
+	}
+	
+	
+	
+}

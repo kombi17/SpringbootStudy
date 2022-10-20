@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+html {
+  height: 100%;
+  line-height: 1.6;
+  font-family: "Silkscreen", "Poor Story";
+}
+
+/* header */
+header {
+  display: flex;
+  height: 250px;
+
+  background: linear-gradient(to bottom, tomato, white);
+  color: white;
+
+  justify-content: space-around;
+  align-items: center;
+}
+
+#title {
+  width: 80%;
+  text-align: left;
+  margin: 30px;
+}
+
+#title a {
+  text-decoration: none;
+  color: white;
+}
+
+#header-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.header-menu {
+  font-size: 15px;
+  font-weight: bold;
+
+  margin-top: 10px;
+}
+
+.header-menu > a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-menu > a:hover {
+  background-color: white;
+  color: tomato;
+  opacity: 70%;
+  border-radius: 5px;
+  transition-duration: 0.1s;
+}
+
+/* 프레임 */
+.content {
+  display: flex;
+  height: 500px;
+}
+
+#main-content {
+  flex-basis: 75%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* sidebar */
+#sidebar {
+  flex-basis: 25%;
+  float: left;
+  color: tomato;
+}
+
+#sidebar-title {
+  font-size: 22px;
+  font-weight: bolder;
+  text-align: center;
+
+  margin-bottom: 70px;
+}
+
+#sidebar-title a {
+  text-decoration: none;
+  color: tomato;
+}
+
+#sidebar-list {
+  padding: 0;
+}
+
+#sidebar-list:first-child {
+  margin-top: 100px;
+}
+
+.sidebar-menu {
+  margin: 35px;
+  font-size: 15px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.sidebar-menu > a {
+  color: tomato;
+  text-decoration: none;
+}
+
+.sidebar-menu > a:hover {
+  background-color: tomato;
+  opacity: 30%;
+  color: white;
+  border-radius: 5px;
+  transition-duration: 0.1s;
+}
+
+/* index페이지 메인 */
+@keyframes blink-effect {
+  50% {
+    opacity: 0;
+  }
+}
+
+#loginLink {
+  text-decoration: none;
+  color: tomato;
+  animation: blink-effect 1.5s step-end 2;
+}
