@@ -64,14 +64,32 @@ uri="http://www.springframework.org/security/tags" %>
               </div class="input-content">
 
               <div class="input-content">
-                <label for="userGender">성별</label>
-                <input type="checkbox" id="userGender" name="userGender" />
+                <div class="input-title">성별</div>
+                <label for="male">male</label>
+                <input type="radio" name="userGender" id="male" />
+                <label for="female">female</label>
+                <input type="radio" name="userGender" id="female" />
               </div class="input-content">
 
+
               <div class="input-content">
-                <label for="userHobby">취미</label>
-                <input type="checkbox" id="userHobby" name="userHobby" />
+                <div class="input-title">취미</div>
+                <label for="book">독서</label>
+                <input type="checkbox" name="userHobby" id="book" value="book" />
+
+                <label for="music">음악 감상</label>
+                <input type="checkbox" name="userHobby" id="music" value="music" />
+
+                <label for="movie">영화 감상</label>
+                <input type="checkbox" name="userHobby" id="movie" value="movie" />
+
+                <label for="knitting">뜨개질</label>
+                <input type="checkbox" name="userHobby" id="knitting" value="knitting" />
+
+                <label for="baking">베이킹</label>
+                <input type="checkbox" name="userHobby" id="baking" value="baking" />
               </div class="input-content">
+
 
               <div class="input-content">
                 <label for="userEmail">E-mail</label>
