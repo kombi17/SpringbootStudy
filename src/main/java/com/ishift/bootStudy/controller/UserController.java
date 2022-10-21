@@ -2,6 +2,7 @@ package com.ishift.bootStudy.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ishift.bootStudy.model.vo.User;
 import com.ishift.bootStudy.service.UserServiceImpl;
@@ -55,10 +57,30 @@ public class UserController {
      */
     @PostMapping("/signUp")
     public String signUp(User user) {
-        userService.joinUser(user);
-        return "redirect:/"; 
+    	try {
+    		System.out.println(user.getUserId());
+        	System.out.println(user.getUserPw());
+        	System.out.println(user.getUserName());
+            userService.joinUser(user);
+            
+    	}catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+        return "redirect:/user/loginForm"; 
     }
     
+    /**
+     * 이메일 중복 체크
+     * @param inputEmail
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/emailDupCheck")
+    public int emailDupCheck(String inputEmail) {
+    	System.out.println(inputEmail);
+    	return userService.emailDupCheck(inputEmail);
+    }
     
     /**
      * 로그인 페이지로 이동
@@ -108,11 +130,15 @@ public class UserController {
      * @throws Exception
      */
 	@GetMapping("/list")
-	public String selectAllUser(Model model) throws Exception {
+	public String selectAllUser(@RequestParam(value="cp", required=false, defaultValue = "1") int cp, Model model) throws Exception {
 		
 		try {
-			List<User> userList = userService.selectAllUser();
-			model.addAttribute("userlist", userList);
+			Map<String, Object> map = null;
+			
+			map = userService.selectAllUser(cp);
+			
+			model.addAttribute("map", map);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

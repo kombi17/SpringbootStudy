@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
 
+@SuppressWarnings("serial")
 @Data
 public class User implements UserDetails{
 	

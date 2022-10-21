@@ -3,10 +3,15 @@ pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fn"
 uri="http://java.sun.com/jsp/jstl/functions"%> <%@ taglib prefix="sec"
 uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>asgmt</title>
+
+    <c:set var="pagination" value="${map.pagination}" />
+    <c:set var="userlist" value="${map.userlist}" />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -44,6 +49,61 @@ uri="http://www.springframework.org/security/tags" %>
           </div>
         </div>
       </div>
+
+      <c:if test="${!empty pagination}">
+        <%-- 페이지네이션 --%>
+        <div class="pagination-area">
+          <!-- 페이지네이션 a태그에 사용될 공통 주소를 저장한 변수 선언 -->
+          <c:set var="url" value="?cp=" />
+          <%-- selectAll?cp= --%>
+
+          <ul class="pagination">
+            <!-- 첫 페이지로 이동 -->
+            <li>
+              <a href="${url}1"><i class="fa-solid fa-angles-left"></i></a>
+            </li>
+
+            <!-- 이전 목록 마지막 번호로 이동 -->
+            <li>
+              <a href="${url}${pagination.prevPage}"
+                ><i class="fa-solid fa-angle-left"></i
+              ></a>
+            </li>
+
+            <!-- 범위가 정해진 일반 for문 사용 -->
+            <c:forEach
+              var="i"
+              begin="${pagination.startPage}"
+              end="${pagination.endPage}"
+              step="1"
+            >
+              <c:choose>
+                <c:when test="${i == pagination.currentPage}">
+                  <li><a class="current">${i}</a></li>
+                </c:when>
+
+                <c:otherwise>
+                  <li><a href="${url}${i}">${i}</a></li>
+                </c:otherwise>
+              </c:choose>
+            </c:forEach>
+
+            <!-- 다음 목록 시작 번호로 이동 -->
+            <li>
+              <a href="${url}${pagination.nextPage}"
+                ><i class="fa-solid fa-angle-right"></i
+              ></a>
+            </li>
+
+            <!-- 끝 페이지로 이동 -->
+            <li>
+              <a href="${url}${pagination.maxPage}"
+                ><i class="fa-solid fa-angles-right"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </c:if>
     </main>
 
     <script src="/resources/js/common.js"></script>

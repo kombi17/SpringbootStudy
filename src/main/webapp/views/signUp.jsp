@@ -32,12 +32,8 @@ uri="http://www.springframework.org/security/tags" %>
         <div id="main-content">
           <div class="container">
             <h1>Sign Up</h1>
-			<hr>
-            <form
-              method="post"
-              action="/user/signUp"
-              onsubmit="return inputValidate()"
-            >
+			      <hr>
+            <form action="/user/signUp" method="post" onsubmit="return signUpValidate()">
               <div class="input-content">
                 <label for="userId">ID</label>
                 <input
@@ -50,17 +46,39 @@ uri="http://www.springframework.org/security/tags" %>
 
               <div class="input-content">
                 <label for="userPw">PW</label>
-                <input type="password" id="userPw" name="userPw" />
+                <input type="password" id="userPw" name="userPw"  />
               </div>
 
               <div class="input-content">
                 <label for="userName">이름</label>
-                <input type="text" id="userName" name="userName" autocomplete="off" />
+                <input type="text" id="userName" name="userName" autocomplete="off"  />
               </div class="input-content">
 
               <div class="input-content">
                 <label for="userNickname">닉네임</label>
-                <input type="text" id="userNickname" name="userNickname" autocomplete="off" />
+                <input type="text" id="userNickname" name="userNickname" autocomplete="off"  />
+              </div class="input-content">
+
+              <div class="input-content">
+                <label for="userEmail">E-mail</label>
+                <input type="text" id="userEmail" name="userEmail" autocomplete="off" />
+              </div class="input-content">
+
+              <div class="input-content">
+                <label for="userTel">전화번호</label>
+                <input type="text" id="userTel" name="userTel" autocomplete="off" />
+              </div class="input-content">
+
+              <!-- API 사용 -->
+              <div class="input-content">
+                <label for="userAddress">주소</label>
+                <input type="text" id="userAddress" name="userAddress" autocomplete="off" />
+              </div class="input-content">
+
+              <!-- 입력 -->
+              <div class="input-content">
+                <label for="userAddressDetail">상세주소</label>
+                <input type="text" id="userAddressDetail" name="userAddressDetail" autocomplete="off" />
               </div class="input-content">
 
               <div class="input-content">
@@ -88,29 +106,6 @@ uri="http://www.springframework.org/security/tags" %>
 
                 <label for="baking">베이킹</label>
                 <input type="checkbox" name="userHobby" id="baking" value="baking" />
-              </div class="input-content">
-
-
-              <div class="input-content">
-                <label for="userEmail">E-mail</label>
-                <input type="text" id="userEmail" name="userEmail" autocomplete="off" />
-              </div class="input-content">
-
-              <div class="input-content">
-                <label for="userTel">전화번호</label>
-                <input type="text" id="userTel" name="userTel" autocomplete="off" />
-              </div class="input-content">
-
-              <!-- API 사용 -->
-              <div class="input-content">
-                <label for="userAddress">주소</label>
-                <input type="text" id="userAddress" name="userAddress" autocomplete="off" />
-              </div class="input-content">
-
-              <!-- 입력 -->
-              <div class="input-content">
-                <label for="userAddressDetail">상세주소</label>
-                <input type="text" id="userAddressDetail" name="userAddressDetail" autocomplete="off" />
               </div class="input-content">
 
               <button type="submit" class="submit-btn">회원 가입</button>

@@ -76,9 +76,11 @@ public class SecurityConfiguration {
             .userDetailsService(userDetailService)
             .and()
             .formLogin((form) -> form // 로그인 설정
-            	.defaultSuccessUrl("/") // 로그인 성공 시 home 화면으로 이동
-            	.failureUrl("/user/loginForm") // 로그인 실패 시 login 화면
-            	.loginPage("/user/login")
+//            	하위 두 줄은 핸들러에서 설정했기 때문에 주석 처리함
+//            	.defaultSuccessUrl("/") // 로그인 성공 시 home 화면으로 이동
+//            	.failureUrl("/user/loginForm") // 로그인 실패 시 login 화면
+            	.loginPage("/user/loginForm") // 로그인 페이지 주소 설정
+            	.loginProcessingUrl("/user/login") // 로그인페이지 form태그 action 속성 url
             	.usernameParameter("userId") // 권한 처리할 때 userId라는 명으로 파라미터를 받겠다. default : username
             	.passwordParameter("userPw") // default : password
             	// 로그인 성공 핸들러

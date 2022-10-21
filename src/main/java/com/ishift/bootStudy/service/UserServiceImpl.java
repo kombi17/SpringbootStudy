@@ -11,12 +11,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ishift.bootStudy.dao.UserDAOImpl;
+import com.ishift.bootStudy.model.vo.Pagination;
 // import com.ishift.bootStudy.mapper.UserMapper;
 import com.ishift.bootStudy.model.vo.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +39,14 @@ public class UserServiceImpl implements UserDetailsService, UserService{
     public void joinUser(User user){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setUserPw(passwordEncoder.encode(user.getUserPw()));
+//        user.setUserName(user.getUserName());
+//        user.setUserNickname(user.getUserNickname());
+//        user.setUserGender(user.getUserGender());
+//        user.setUserHobby(user.getUserHobby());
+//        user.setUserEmail(user.getUserEmail());
+//        user.setUserTel(user.getUserTel());
+//        user.setUserAddress(user.getUserAddress());
+//        user.setUserAddressDetail(user.getUserAddressDetail());
         user.setUserAuth("USER");
         user.setAppendDate(localTime);
         user.setUpdateDate(localTime);
@@ -53,12 +64,33 @@ public class UserServiceImpl implements UserDetailsService, UserService{
 	}
 	
 	/**
+	 * 이메일 중복 체크
+	 */
+	@Override
+	public int emailDupCheck(String inputEmail) {
+		return userMapper.emailDupCheck(inputEmail);
+	}
+	
+	
+	/**
 	 * 회원 목록 조회
+	 * @param cp 
 	 * @return
 	 */
 	@Override
-	public List<User> selectAllUser(){
-		return userMapper.selectAllUser();
+	public Map<String, Object> selectAllUser(int cp){
+		
+		int listCount = userMapper.countUser();
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		List<User> userList = userMapper.selectAllUser(pagination);
+		
+		Map<String , Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("userlist", userList);
+		
+		return map;
 	}
 	
 	/**
@@ -95,6 +127,8 @@ public class UserServiceImpl implements UserDetailsService, UserService{
 		
 		return result;
 	}
+
+
 	
 	
 	
