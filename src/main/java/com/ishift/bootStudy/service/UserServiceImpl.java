@@ -103,32 +103,6 @@ public class UserServiceImpl implements UserDetailsService, UserService{
 		return userMapper.selectLoginUser(userId);
 	}
 
-	/**
-	 * 로그인 한 회원의 현재 비밀번호 조회
-	 * 사용자가 입력한 비밀번호와 현재 비밀번호 비교
-	 * @return result
-	 */
-	@Override
-	public int checkPw(int userNo, String userPw) {
-		
-		int result = 0;
-		
-		String currentPw = userMapper.checkPw(userNo);
-		
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
-		// 입력 받은 비밀번호와 현재 비밀번호 비교
-		if(passwordEncoder.matches(userPw, currentPw)) {
-			// 비밀번호가 일치할 경우
-			result = 1;
-		} else {
-			result = 0;
-		}
-		
-		return result;
-	}
-
-
 	
 	
 	

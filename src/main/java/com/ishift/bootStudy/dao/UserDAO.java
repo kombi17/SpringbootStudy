@@ -22,9 +22,6 @@ public interface UserDAO {
 	// 로그인 한 회원 정보 조회
 	User selectLoginUser(String userId);
 	
-	// 로그인 한 회원의 현재 비밀번호 조회
-	String checkPw(int userNo);
-	
 	// 이메일 중복 체크
 	int emailDupCheck(String inputEmail);
 

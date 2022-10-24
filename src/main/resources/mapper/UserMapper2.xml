@@ -43,11 +43,6 @@
 		WHERE USER_ID= #{userId}
 	</select>
 	
-	<select id="checkPw" resultType="string">
-		SELECT USER_PW FROM user
-		WHERE USER_NO = #{userNo}
-	</select>
-	
 	<!-- 이메일 중복 검사 -->
 	<select id="emailDupCheck" resultType="int">
 		SELECT COUNT(*) FROM user

@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -130,7 +131,9 @@ public class UserController {
      * @throws Exception
      */
 	@GetMapping("/list")
-	public String selectAllUser(@RequestParam(value="cp", required=false, defaultValue = "1") int cp, Model model) throws Exception {
+	public String selectAllUser(
+			@RequestParam(value="cp", required=false, defaultValue = "1") int cp, 
+			Model model) throws Exception {
 		
 		try {
 			Map<String, Object> map = null;
@@ -146,96 +149,15 @@ public class UserController {
 		
 	}
 	
-	/**
-	 * 비밀번호 확인 페이지로 이동
-	 * @param principal
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/checkPwForm")
-    public String checkPwForm(Principal principal
-    		,Model model) {
-		
-		// 로그인 한 회원 1명의 정보 
-		try {
-			
-			String userId = principal.getName();
-			
-			User loginUser = userService.selectLoginUser(userId);
-			
-			model.addAttribute("loginuser", loginUser);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-        return "checkPw";
-    }
-	
-	
-	/**
-	 * 비밀번호 확인
-	 * @return
-	 */
-	@PostMapping("checkPw")
-	public String checkPw(Principal principal, String userPw,
-			Model model
-			) {
-		
-		// 회원 번호 얻어오기
-		String userId = principal.getName();
-		User loginUser = userService.selectLoginUser(userId);
-		
-		int userNo = loginUser.getUserNo();
-		
-		// 현재 비밀번호 확인 후 비교
-		int result = userService.checkPw(userNo, userPw);
-		
-		if(result == 0) {
-			// 비밀번호 불일치
-			String errorMsg = "비밀번호가 불일치합니다, 다시 시도해주세요.";
-			
-			model.addAttribute("errorMsg", errorMsg);
-			
-			return "checkPw";
-		} else {
-			
-		}
-		
-		
-		return "changePw";
-	}
-	
-	
-	/**
-	 * 비밀번호 변경 form으로 이동
-	 */
-	@GetMapping("/changePwForm")
-    public String changePwForm(Principal principal
-    		,Model model) {
-		
-		// 로그인 한 회원 1명의 정보 
-		try {
-			
-			String userId = principal.getName();
-			
-			User loginUser = userService.selectLoginUser(userId);
-			
-			model.addAttribute("loginuser", loginUser);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-        return "changePw";
-    }
 	
 	/**
 	 * 회원 정보 수정 form으로 이동
 	 */
-	@GetMapping("/changeInfoForm")
-    public String changeInfoForm(Principal principal
-    		,Model model) {
+	@GetMapping("/detail/{userNo}")
+    public String userDetailForm(@PathVariable("userNo") int userNo,
+    		@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
+    		Principal principal,
+    		Model model) throws Exception {
 		
 		// 로그인 한 회원 1명의 정보 
 		try {
@@ -244,13 +166,18 @@ public class UserController {
 			
 			User loginUser = userService.selectLoginUser(userId);
 			
-			model.addAttribute("loginuser", loginUser);
+			if(loginUser.getUserNo() == userNo) {
+				// 로그인 한 유저와 클릭한 유저가 같을 경우
+				model.addAttribute("loginuser", loginUser);
+				return "userDetail";
+			} 
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-        return "changeInfo";
+		return "redirect:/user/list";		
     }
 	
 

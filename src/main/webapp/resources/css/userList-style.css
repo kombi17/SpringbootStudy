@@ -29,6 +29,11 @@
   padding-bottom: 3px;
 }
 
+#goToUserDetailPage {
+  text-decoration: none;
+  color: black;
+}
+
 /* 페이지네이션 */
 .pagination {
   display: flex;

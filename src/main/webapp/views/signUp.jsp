@@ -10,10 +10,10 @@ uri="http://www.springframework.org/security/tags" %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="/resources/css/common.css" />
-    <link rel="stylesheet" href="/resources/css/input-style.css" />
+    <link rel="stylesheet" href="../resources/css/common.css" />
+    <link rel="stylesheet" href="../resources/css/input-style.css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <script
       src="https://kit.fontawesome.com/245c493145.js"
       crossorigin="anonymous"
@@ -22,11 +22,11 @@ uri="http://www.springframework.org/security/tags" %>
   <body>
     <main>
       <!-- header -->
-      <%@ include file="/views/common/header.jsp" %>
+      <%@ include file="../views/common/header.jsp" %>
 
       <div class="content">
         <!-- sidebar -->
-        <%@ include file="/views/common/sidebar.jsp" %>
+        <%@ include file="../views/common/sidebar.jsp" %>
 
         <!-- 본문 -->
         <div id="main-content">
@@ -72,13 +72,10 @@ uri="http://www.springframework.org/security/tags" %>
               <!-- API 사용 -->
               <div class="input-content">
                 <label for="userAddress">주소</label>
-                <input type="text" id="userAddress" name="userAddress" autocomplete="off" />
-              </div class="input-content">
-
-              <!-- 입력 -->
-              <div class="input-content">
-                <label for="userAddressDetail">상세주소</label>
-                <input type="text" id="userAddressDetail" name="userAddressDetail" autocomplete="off" />
+                <input type="text" id="sample4_postcode" name="userAddress" placeholder="우편번호">
+                <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                <input type="text" id="sample4_roadAddress" name="userAddress" placeholder="도로명주소">
+                <input type="text" id="sample4_detailAddress" name="userAddress" placeholder="상세주소">
               </div class="input-content">
 
               <div class="input-content">
@@ -115,6 +112,12 @@ uri="http://www.springframework.org/security/tags" %>
       </div>
     </main>
 
-    <script src="/resources/js/signUp.js"></script>
+    <!-- jQuery 라이브러리 추가 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- 다음 주소 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- signUp.js -->
+    <script src="..\resources\js\signUp.js"></script>
+
   </body>
 </html>

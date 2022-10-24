@@ -42,7 +42,13 @@ uri="http://www.springframework.org/security/tags" %>
             <div class="item columnTitle">가입 날짜</div>
             <!-- 내용 -->
             <c:forEach var="user" items="${userlist}">
-              <div class="item">${user.userId}</div>
+              <div class="item">
+                <a
+                  id="goToUserDetailPage"
+                  href="/user/detail/${user.userNo}?cp=${pagination.currentPage}"
+                  >${user.userId} <i class="fa-solid fa-ellipsis"></i
+                ></a>
+              </div>
               <div class="item">${user.userName}</div>
               <div class="item">${user.appendDate}</div>
             </c:forEach>

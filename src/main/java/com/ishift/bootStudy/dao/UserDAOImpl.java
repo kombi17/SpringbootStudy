@@ -47,11 +47,6 @@ public class UserDAOImpl implements UserDAO{
 		return sqlSession.selectOne("userMapper.selectLoginUser", userId);
 	}
 
-	@Override
-	public String checkPw(int userNo) {
-		return sqlSession.selectOne("userMapper.checkPw", userNo);
-	}
-
 	public int emailDupCheck(String inputEmail) {
 		return sqlSession.selectOne("userMapper.emailDupCheck", inputEmail);
 	}
