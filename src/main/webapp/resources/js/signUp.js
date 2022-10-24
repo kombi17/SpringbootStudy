@@ -178,100 +178,52 @@ const inputGenderList = document.getElementsByName("userGender");
 const genderCheck = inputGenderList.values.length;
 const genderMsg = document.getElementById("genderMsg");
 
-// $("input[name=userGender]:checked").each(function () {
-//   console.log($(this).val());
-// });
-
-// if (genderCheck < 1) {
-//   console.log("aaa");
-// }
 for (var i = 0; i < inputGenderList.length; i++) {
   inputGenderList[i].addEventListener("change", function (e) {
     if (e.target.checked) {
       genderMsg.innerText = "선택되었습니다.";
       genderMsg.classList.add("confirm");
       genderMsg.classList.remove("error");
+      checkObj.inputGenderList = true;
     } else {
       genderMsg.innerHTML = "성별을 선택해주세요.";
       genderMsg.classList.add("error");
       genderMsg.classList.remove("confirm");
+      checkObj.inputGenderList = false;
     }
   });
 }
 
-// if (!inputGenderList[i].checked) {
-//   genderMsg.innerText = "성별을 선택해주세요.";
-//   genderMsg.classList.remove("confirm", "error");
-//   checkObj.inputGenderList = false;
-// } else {
-//   genderMsg.innerText = "선택 완료";
-//   genderMsg.classList.add("confirm");
-//   genderMsg.classList.remove("error");
-//   checkObj.inputGenderList = true;
-// }
-
-// if (!inputGenderList[i].checked) {
-//   genderMsg.innerText = "성별을 선택해주세요.";
-//   genderMsg.classList.remove("confirm", "error");
-//   checkObj.inputGenderList = false;
-// } else {
-//   genderMsg.innerText = "선택 완료";
-//   genderMsg.classList.add("confirm");
-//   genderMsg.classList.remove("error");
-//   checkObj.inputGenderList = true;
-// }
-
-// for (let item in inputGenderList) {
-//   inputGenderList[item].addEventListener("click", function () {
-//     if (!inputGenderList[item].checked) {
-//       // 한 개도 체크되지 않은 경우
-//       alert("성별을 선택해주세요.");
-//       checkObj.inputGenderList = false;
-//     } else {
-//       // 하나라도 체크되어있는 경우
-//       checkObj.inputGenderList = true;
-//     }
-//   });
-// }
-
-// 취미 유효성 검사
-// for (let item in inputHobbyList) {
-//   inputHobbyList[item].addEventListener("click", function () {
-//     if (!inputHobbyList[item].checked) {
-//       // 한 개도 체크되지 않은 경우
-//       alert("취미를 선택해주세요.");
-//       checkObj.inputHobbyList = false;
-//     } else {
-//       // 하나라도 체크되어있는 경우
-//       checkObj.inputHobbyList = true;
-//     }
-//   });
-// }
-
-// 미완성!!!!
+// done!! 기쁘다!!ㅠㅠ
 const inputHobbyList = document.getElementsByName("userHobby");
 const hobbyMsg = document.getElementById("hobbyMsg");
+var count = 0;
 for (var i = 0; i < inputHobbyList.length; i++) {
+  if (inputHobbyList[i].checked) {
+    // 첫 번째 클릭
+    count++;
+  }
+
   inputHobbyList[i].addEventListener("change", function (e) {
-    var count = 0;
     if (e.target.checked) {
+      // 선택하면 +1
       count += 1;
-      console.log(count);
     } else {
+      // 선택 취소하면 -1
       count -= 1;
-      console.log(count);
     }
 
     if (count == 0) {
-      // 취미 선택 한 번도 안 함!!
-
+      // 한 가지도 선택하지 않았을 때
       hobbyMsg.innerHTML = "취미를 선택해주세요.";
       hobbyMsg.classList.add("error");
       hobbyMsg.classList.remove("confirm");
+      checkObj.inputHobbyList = false;
     } else {
       hobbyMsg.innerText = "선택되었습니다.";
       hobbyMsg.classList.add("confirm");
       hobbyMsg.classList.remove("error");
+      checkObj.inputHobbyList = true;
     }
   });
 }
