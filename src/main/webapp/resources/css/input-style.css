@@ -50,3 +50,15 @@
 
   width: 100%;
 }
+
+/* signUp-message span */
+.signUp-msg {
+  font-size: 13px;
+  letter-spacing: -1px;
+}
+.confirm {
+  color: green;
+}
+.error {
+  color: red;
+}

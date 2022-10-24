@@ -14,145 +14,264 @@ const checkObj = {
   inputAddressDetail: false,
 };
 
+const inputAddress = document.getElementsByName("userAddress");
+
+// 아이디 빈칸 검사
 const inputId = document.getElementById("userId");
+const idMsg = document.getElementById("idMsg");
+
+inputId.addEventListener("input", function () {
+  if (inputId.value.length == 0) {
+    // 입력되지 않은 경우
+    idMsg.innerText = "영어, 숫자 6-20자 사이로 작성해주세요.";
+    idMsg.classList.remove("confirm", "error");
+
+    checkObj.inputId = false;
+    return;
+  }
+
+  // 입력된 경우
+  const idRegExp = /^[a-z0-9]{6,20}$/g;
+  if (idRegExp.test(inputId.value)) {
+    // 유효한 경우
+    idMsg.innerText = "사용 가능한 아이디 입니다.";
+    idMsg.classList.add("confirm");
+    idMsg.classList.remove("error");
+    checkObj.inputId = true;
+
+    // 아이디 중복 체크 하면 좋을 것 같음!! ajax 이용?
+  } else {
+    // 유효하지 않은 경우
+    idMsg.innerText = "적합하지 않은 아이디입니다.";
+    idMsg.classList.add("error");
+    idMsg.classList.remove("confirm");
+    checkObj.inputId = false;
+  }
+});
+
+// 비밀번호 유효성 검사
 const inputPw = document.getElementById("userPw");
-const inputName = document.getElementById("userName");
+const pwMsg = document.getElementById("pwMsg");
+inputPw.addEventListener("input", function () {
+  if (inputPw.value.length == 0) {
+    // 입력되지 않은 경우
+    pwMsg.innerText =
+      "영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.";
+    pwMsg.classList.remove("confirm", "error");
+
+    checkObj.inputPw = false;
+    return;
+  }
+
+  // 입력된 경우
+  const pwRegExp = /^[\w!@#_-]{6,30}$/;
+  if (pwRegExp.test(inputPw.value)) {
+    // 유효한 경우
+    pwMsg.innerText = "사용 가능한 비밀번호 입니다.";
+    pwMsg.classList.add("confirm");
+    pwMsg.classList.remove("error");
+    checkObj.inputPw = true;
+
+    // 아이디 중복 체크 하면 좋을 것 같음!! ajax 이용?
+  } else {
+    // 유효하지 않은 경우
+    pwMsg.innerText = "적합하지 않은 비밀번호입니다.";
+    pwMsg.classList.add("error");
+    pwMsg.classList.remove("confirm");
+    checkObj.inputPw = false;
+  }
+});
+
+// 닉네임 유효성 검사
 const inputNickname = document.getElementById("userNickname");
-const inputGenderList = document.getElementsByName("userGender");
-const inputHobbyList = document.getElementsByName("userHobby");
-const inputEmail = document.getElementById("userEmail");
-const inputTel = document.getElementById("userTel");
+const nicknameMsg = document.getElementById("nicknameMsg");
+inputNickname.addEventListener("input", function () {
+  if (inputNickname.value.length == 0) {
+    // 입력되지 않은 경우
+    nicknameMsg.innerText = "영어, 숫자, 한글 2~10자 사이로 작성해주세요.";
+    nicknameMsg.classList.remove("confirm", "error");
 
-// api는 어떤 식으로 유효성 검사를 하남???????
-const inputAddress = document.getElementById("userAddress");
-const inputAddressDetail = document.getElementById("userAddressDetail");
+    checkObj.inputNickname = false;
+    return;
+  }
 
-let inputObj = [];
-
-inputObj.push(inputId, inputPw, inputName, inputNickname);
-
-for (let item in inputObj) {
-  console.log(inputObj[item]);
-  inputObj[item].addEventListener("input", function () {
-    if (inputObj[item].value.length == 0) {
-      var str = "";
-      switch (item) {
-        case "inputId":
-          str = "아이디를";
-          checkObj.inputId = false;
-          break;
-        case "inputPw":
-          str = "비밀번호를";
-          checkObj.inputPw = false;
-          break;
-        case "inputName":
-          str = "이름을";
-          checkObj.inputName = false;
-          break;
-        case "inputNickname":
-          str = "닉네임을";
-          checkObj.inputNickname = false;
-          break;
-      }
-
-      str += "작성해주세요.";
-      alert(str);
-      document.getElementById(item).focus();
-    }
-  });
-}
+  // 입력된 경우
+  const nicknameRegExp = /^[a-zA-Z0-9가-힣]{2,10}$/;
+  if (nicknameRegExp.test(inputNickname.value)) {
+    // 유효한 경우
+    nicknameMsg.innerText = "사용 가능한 닉네임 입니다.";
+    nicknameMsg.classList.add("confirm");
+    nicknameMsg.classList.remove("error");
+    checkObj.inputNickname = true;
+  } else {
+    // 유효하지 않은 경우
+    nicknameMsg.innerText = "적합하지 않은 닉네임입니다.";
+    nicknameMsg.classList.add("error");
+    nicknameMsg.classList.remove("confirm");
+    checkObj.inputNickname = false;
+  }
+});
 
 // 이메일 유효성 검사
+const inputEmail = document.getElementById("userEmail");
+const emailMsg = document.getElementById("emailMsg");
 inputEmail.addEventListener("input", function () {
   if (inputEmail.value.length == 0) {
     // 입력되지 않은 경우
-    alert("이메일을 입력해주세요.");
+    emailMsg.innerText = "메일을 받을 수 있는 이메일을 입력해주세요.";
+    emailMsg.classList.remove("confirm", "error");
     checkObj.inputEmail = false;
     return;
   }
 
   // 입력된 경우
   // 이메일 정규식
-  const EmailRegExp = /^[\w\-\_]{4,}@[\w\-\_]+(\.\w+){1,3}$/;
+  const emailRegExp = /^[\w\-\_]{4,}@[\w\-\_]+(\.\w+){1,3}$/;
 
-  if (EmailRegExp.test(inputEmail.value)) {
+  if (emailRegExp.test(inputEmail.value)) {
     // 유효한 경우
-    // ajax 통해 중복 검사 (추후 추가)
-    // $.ajax({
-    //   url: "emailDupCheck",
-    //   // 현재 주소 /user/signUp
-    //   // 요청 주소 /user/emailDupCheck
-    //   data: { inputEmail: inputEmail.value },
-    //   type: "get",
-    //   success: function (result) {
-    //     // ajax가 오류 없이 요청/응답에 성공한 경우
-    //     // result : 중복인 경우 1, 아닌 경우 0
-    //     console.log(result);
-    //     if (result > 0) {
-    //       // 중복된 값인 경우
-    //       alert("이미 사용 중인 이메일입니다.");
-    //       checkObj.inputEmail = false;
-    //     } else {
-    //       // 중복되지 않은 경우
-    //       checkObj.inputEmail = true;
-    //     }
-    //   },
-    //   error: function () {
-    //     // ajax 중 오류가 발생한 경우
-    //     console.log("에러 발생");
-    //   },
-    // });
+    emailMsg.innerText = "사용 가능한 이메일 입니다.";
+    emailMsg.classList.add("confirm");
+    emailMsg.classList.remove("error");
+    checkObj.inputEmail = true;
   } else {
-    alert("유효하지 않은 이메일 주소입니다.");
+    emailMsg.innerText = "적합하지 않은 이메일입니다.";
+    emailMsg.classList.add("error");
+    emailMsg.classList.remove("confirm");
     checkObj.inputEmail = false;
   }
 });
 
 // 전화번호 유효성 검사
+const inputTel = document.getElementById("userTel");
+const telMsg = document.getElementById("telMsg");
 inputTel.addEventListener("input", function () {
   // 입력이 되지 않은 경우
   if (inputTel.value.length == 0) {
-    alert("전화번호를 입력해주세요.");
-    checkObj.inputTel = false; // 유효하지 않은 상태임을 기록
+    // 입력되지 않은 경우
+    telMsg.innerText = "전화번호를 입력해주세요.(- 제외)";
+    telMsg.classList.remove("confirm", "error");
+    checkObj.inputTel = false;
     return;
   }
 
+  // 입력된 경우
   // 전화번호 정규식
-  const TelRegExp = /^0(1[01679]|2|[3-6][1-5]|70)\d{3,4}\d{4}$/;
+  const telRegExp = /^0(1[01679]|2|[3-6][1-5]|70)\d{3,4}\d{4}$/;
 
-  if (TelRegExp.test(inputTel.value)) {
+  if (telRegExp.test(inputTel.value)) {
     // 유효한 경우
-    checkObj.inputTel = true; // 유효한 상태임을 기록
+    telMsg.innerText = "사용 가능한 이메일 입니다.";
+    telMsg.classList.add("confirm");
+    telMsg.classList.remove("error");
+    checkObj.inputTel = true;
   } else {
-    // 유효하지 않은 경우
-    checkObj.inputTel = false; // 유효하지 않은 상태임을 기록
+    telMsg.innerText = "적합하지 않은 이메일입니다.";
+    telMsg.classList.add("error");
+    telMsg.classList.remove("confirm");
+    checkObj.inputTel = false;
   }
 });
 
 // 성별 유효성 검사
-for (let item in inputGenderList) {
-  inputGenderList[item].addEventListener("click", function () {
-    if (!inputGenderList[item].checked) {
-      // 한 개도 체크되지 않은 경우
-      alert("성별을 선택해주세요.");
-      checkObj.inputGenderList = false;
+const inputGenderList = document.getElementsByName("userGender");
+const genderCheck = inputGenderList.values.length;
+const genderMsg = document.getElementById("genderMsg");
+
+// $("input[name=userGender]:checked").each(function () {
+//   console.log($(this).val());
+// });
+
+// if (genderCheck < 1) {
+//   console.log("aaa");
+// }
+for (var i = 0; i < inputGenderList.length; i++) {
+  inputGenderList[i].addEventListener("change", function (e) {
+    if (e.target.checked) {
+      genderMsg.innerText = "선택되었습니다.";
+      genderMsg.classList.add("confirm");
+      genderMsg.classList.remove("error");
     } else {
-      // 하나라도 체크되어있는 경우
-      checkObj.inputGenderList = true;
+      genderMsg.innerHTML = "성별을 선택해주세요.";
+      genderMsg.classList.add("error");
+      genderMsg.classList.remove("confirm");
     }
   });
 }
 
+// if (!inputGenderList[i].checked) {
+//   genderMsg.innerText = "성별을 선택해주세요.";
+//   genderMsg.classList.remove("confirm", "error");
+//   checkObj.inputGenderList = false;
+// } else {
+//   genderMsg.innerText = "선택 완료";
+//   genderMsg.classList.add("confirm");
+//   genderMsg.classList.remove("error");
+//   checkObj.inputGenderList = true;
+// }
+
+// if (!inputGenderList[i].checked) {
+//   genderMsg.innerText = "성별을 선택해주세요.";
+//   genderMsg.classList.remove("confirm", "error");
+//   checkObj.inputGenderList = false;
+// } else {
+//   genderMsg.innerText = "선택 완료";
+//   genderMsg.classList.add("confirm");
+//   genderMsg.classList.remove("error");
+//   checkObj.inputGenderList = true;
+// }
+
+// for (let item in inputGenderList) {
+//   inputGenderList[item].addEventListener("click", function () {
+//     if (!inputGenderList[item].checked) {
+//       // 한 개도 체크되지 않은 경우
+//       alert("성별을 선택해주세요.");
+//       checkObj.inputGenderList = false;
+//     } else {
+//       // 하나라도 체크되어있는 경우
+//       checkObj.inputGenderList = true;
+//     }
+//   });
+// }
+
 // 취미 유효성 검사
-for (let item in inputHobbyList) {
-  inputHobbyList[item].addEventListener("click", function () {
-    if (!inputHobbyList[item].checked) {
-      // 한 개도 체크되지 않은 경우
-      alert("취미를 선택해주세요.");
-      checkObj.inputHobbyList = false;
+// for (let item in inputHobbyList) {
+//   inputHobbyList[item].addEventListener("click", function () {
+//     if (!inputHobbyList[item].checked) {
+//       // 한 개도 체크되지 않은 경우
+//       alert("취미를 선택해주세요.");
+//       checkObj.inputHobbyList = false;
+//     } else {
+//       // 하나라도 체크되어있는 경우
+//       checkObj.inputHobbyList = true;
+//     }
+//   });
+// }
+
+// 미완성!!!!
+const inputHobbyList = document.getElementsByName("userHobby");
+const hobbyMsg = document.getElementById("hobbyMsg");
+for (var i = 0; i < inputHobbyList.length; i++) {
+  inputHobbyList[i].addEventListener("change", function (e) {
+    var count = 0;
+    if (e.target.checked) {
+      count += 1;
+      console.log(count);
     } else {
-      // 하나라도 체크되어있는 경우
-      checkObj.inputHobbyList = true;
+      count -= 1;
+      console.log(count);
+    }
+
+    if (count == 0) {
+      // 취미 선택 한 번도 안 함!!
+
+      hobbyMsg.innerHTML = "취미를 선택해주세요.";
+      hobbyMsg.classList.add("error");
+      hobbyMsg.classList.remove("confirm");
+    } else {
+      hobbyMsg.innerText = "선택되었습니다.";
+      hobbyMsg.classList.add("confirm");
+      hobbyMsg.classList.remove("error");
     }
   });
 }

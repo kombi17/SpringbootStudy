@@ -41,13 +41,19 @@ uri="http://www.springframework.org/security/tags" %>
                   id="userId"
                   name="userId"
                   autocomplete="off"
+                  required
                 />
               </div>
+              <span class="signUp-msg" id="idMsg">영어, 숫자 6-20자 사이로 작성해주세요.</span>
+
+              <!-- 아이디 중복검사 넣으면 좋을 것 같은데!! -->
 
               <div class="input-content">
                 <label for="userPw">PW</label>
-                <input type="password" id="userPw" name="userPw"  />
+                <input type="password" id="userPw" name="userPw" required />
               </div>
+              <span class="signUp-msg" id="pwMsg">영어, 숫자, 특수문자(!,@,#,-,_) 6~30자 사이로 작성해주세요.</span>
+              
 
               <div class="input-content">
                 <label for="userName">이름</label>
@@ -58,34 +64,47 @@ uri="http://www.springframework.org/security/tags" %>
                 <label for="userNickname">닉네임</label>
                 <input type="text" id="userNickname" name="userNickname" autocomplete="off"  />
               </div class="input-content">
+              <span class="signUp-msg" id="nicknameMsg">영어, 숫자, 한글 2~10자 사이로 작성해주세요.</span>
 
               <div class="input-content">
                 <label for="userEmail">E-mail</label>
                 <input type="text" id="userEmail" name="userEmail" autocomplete="off" />
               </div class="input-content">
+              <span class="signUp-msg" id="emailMsg">메일을 받을 수 있는 이메일을 입력해주세요.</span>
 
               <div class="input-content">
                 <label for="userTel">전화번호</label>
                 <input type="text" id="userTel" name="userTel" autocomplete="off" />
               </div class="input-content">
+              <span class="signUp-msg" id="telMsg">전화번호를 입력해주세요.(- 제외)</span>
+
 
               <!-- API 사용 -->
               <div class="input-content">
-                <label for="userAddress">주소</label>
-                <input type="text" id="sample4_postcode" name="userAddress" placeholder="우편번호">
-                <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" id="sample4_roadAddress" name="userAddress" placeholder="도로명주소">
-                <input type="text" id="sample4_detailAddress" name="userAddress" placeholder="상세주소">
-              </div class="input-content">
+                <label for="sample4_postcode">주소</label>
+                <input type="text" id="sample4_postcode" name="userAddress" autocomplete="off">
+                <input type="button" name="userAddress" onclick="sample4_execDaumPostcode()" value="검색"><br>
+              </div>
+              <div class="input-content">
+                <label for="sample4_roadAddress">도로명 주소</label>
+                <input type="text" id="sample4_roadAddress" name="userAddress" autocomplete="off">
+              </div>
+              <div class="input-content">
+                <label for="sample4_detailAddress">상세 주소</label>
+                <input type="text" id="sample4_detailAddress" name="userAddress" autocomplete="off">
+              </div>
+              
 
               <div class="input-content">
                 <div class="input-title">성별</div>
-                <label for="male">male</label>
+                <label for="male">남성</label>
                 <input type="radio" name="userGender" id="male" />
-                <label for="female">female</label>
+                <label for="female">여성</label>
                 <input type="radio" name="userGender" id="female" />
+                <label for="noSelect">공개 안 함</label>
+                <input type="radio" name="userGender" id="noSelect" />
               </div class="input-content">
-
+              <span class="signUp-msg" id="genderMsg">성별을 선택해주세요.</span>
 
               <div class="input-content">
                 <div class="input-title">취미</div>
@@ -104,6 +123,8 @@ uri="http://www.springframework.org/security/tags" %>
                 <label for="baking">베이킹</label>
                 <input type="checkbox" name="userHobby" id="baking" value="baking" />
               </div class="input-content">
+              <span class="signUp-msg" id="hobbyMsg">1개 이상의 취미를 선택해주세요.</span>
+
 
               <button type="submit" class="submit-btn">회원 가입</button>
             </form>
