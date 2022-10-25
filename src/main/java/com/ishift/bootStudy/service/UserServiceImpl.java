@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ishift.bootStudy.dao.UserDAOImpl;
 import com.ishift.bootStudy.model.vo.Pagination;
+import com.ishift.bootStudy.model.vo.RegisterUser;
 // import com.ishift.bootStudy.mapper.UserMapper;
 import com.ishift.bootStudy.model.vo.User;
 
@@ -36,21 +37,20 @@ public class UserServiceImpl implements UserDetailsService, UserService{
     UserDAOImpl userMapper;
     
     @Transactional
-    public void joinUser(User user){
+    public void signUp(RegisterUser registerUser){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        user.setUserPw(passwordEncoder.encode(user.getUserPw()));
-//        user.setUserName(user.getUserName());
-//        user.setUserNickname(user.getUserNickname());
-//        user.setUserGender(user.getUserGender());
-//        user.setUserHobby(user.getUserHobby());
-//        user.setUserEmail(user.getUserEmail());
-//        user.setUserTel(user.getUserTel());
-//        user.setUserAddress(user.getUserAddress());
-//        user.setUserAddressDetail(user.getUserAddressDetail());
-        user.setUserAuth("USER");
-        user.setAppendDate(localTime);
-        user.setUpdateDate(localTime);
-        userMapper.saveUser(user);
+        registerUser.setUserPw(passwordEncoder.encode(registerUser.getUserPw()));
+        registerUser.setUserName(registerUser.getUserName());
+        registerUser.setUserNickname(registerUser.getUserNickname());
+        registerUser.setUserGender(registerUser.getUserGender());
+        registerUser.setUserHobby(registerUser.getUserHobby());
+        registerUser.setUserEmail(registerUser.getUserEmail());
+        registerUser.setUserTel(registerUser.getUserTel());
+        registerUser.setUserAddress(registerUser.getUserAddress());
+        registerUser.setUserAuth("USER");
+        registerUser.setAppendDate(localTime);
+        registerUser.setUpdateDate(localTime);
+        userMapper.signUp(registerUser);
     }
     
 	@Override

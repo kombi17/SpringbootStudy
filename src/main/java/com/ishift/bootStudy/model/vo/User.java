@@ -17,15 +17,18 @@ public class User implements UserDetails{
 	private String userId;
 	private String userPw;
 	private String userName;
-	private String userNickname;
-	private String userGender;
-	private String userHobby;
-	private String userEmail;
-	private String userTel;
-	private String userAddress;
+//	private String userNickname;
+//	private String userGender;
+//	private String userHobby;
+//	private String userEmail;
+//	private String userTel;
+//	private String userAddress;
 	private String userAuth;
 	private String appendDate;
 	private String updateDate;
+	
+	// UserDetailService를 구현한 UserServiceImpl에 있는 
+	// loadUserByUsername() 메서드 에서 반환한 User VO 내용과 권한을 UserDetails를 implement한 User객체에서 
 	
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

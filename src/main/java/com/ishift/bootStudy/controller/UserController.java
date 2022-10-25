@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ishift.bootStudy.model.vo.RegisterUser;
 import com.ishift.bootStudy.model.vo.User;
 import com.ishift.bootStudy.service.UserServiceImpl;
 
@@ -37,7 +38,7 @@ public class UserController {
      * 회원가입 폼
      * @return
      */
-    @GetMapping("/signUpForm")
+    @GetMapping("/signUp")
     public String signUpForm() {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -57,12 +58,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/signUp")
-    public String signUp(User user) {
+    public String signUp(RegisterUser registerUser) {
     	try {
-    		System.out.println(user.getUserId());
-        	System.out.println(user.getUserPw());
-        	System.out.println(user.getUserName());
-            userService.joinUser(user);
+            userService.signUp(registerUser);
             
     	}catch (Exception e) {
 			e.printStackTrace();
@@ -112,15 +110,6 @@ public class UserController {
     		// 로그인 한 사람이 있는 경우
     		return "redirect:/";
     	}
-    }
-    
-    /**
-     * 로그인
-     * @return
-     */
-    @PostMapping("/login")
-    public String login(){
-        return "redirect:/";
     }
     
     
@@ -187,8 +176,8 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("/myPage")
-    public String myPage(User user) {
+    @PostMapping("/detail/update")
+    public String userUpdate(User user) {
        
     	// PUT 요청 : 리소스를 생성 및 업데이트 하기 위해 서버로 데이터를 보낼 때 쓰는 방법
     	// post와 put의 차이 : put 요청은 멱등성 유지, 동일한 put 요청을 여러 번 호출해도 항상 동일한 결과 생성

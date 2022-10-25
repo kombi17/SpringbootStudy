@@ -3,6 +3,7 @@ package com.ishift.bootStudy.dao;
 import java.util.List;
 
 import com.ishift.bootStudy.model.vo.Pagination;
+import com.ishift.bootStudy.model.vo.RegisterUser;
 import com.ishift.bootStudy.model.vo.User;
 
 public interface UserDAO {
@@ -11,7 +12,7 @@ public interface UserDAO {
     User getUserAccount(String userId);
 	
     // 회원가입
-	void saveUser(User user);
+	void signUp(RegisterUser registerUser);
 	
 	// 회원 수 조회
 	int countUser();

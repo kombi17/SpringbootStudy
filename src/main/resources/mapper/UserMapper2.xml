@@ -20,11 +20,12 @@
         'USER', SYSDATE(), SYSDATE())
     </insert>
     
-    <insert id="saveUser_test" parameterType="com.ishift.bootStudy.model.vo.User">
-        INSERT INTO user (USER_ID, USER_PW, USER_NAME, 
-        USER_AUTH, APPEND_DATE, UPDATE_DATE)
-        VALUES (#{userId}, #{userPw}, #{userName}, 
-        'USER', SYSDATE(), SYSDATE())
+    <insert id="signUp" parameterType="com.ishift.bootStudy.model.vo.RegisterUser">
+        INSERT INTO user(
+		USER_ID, USER_PW, USER_NAME, USER_NICKNAME, USER_GENDER, USER_HOBBY, USER_EMAIL, 
+		USER_TEL, USER_ADDRESS, USER_AUTH, APPEND_DATE, UPDATE_DATE)
+		VALUES (#{userId}, #{userPw}, #{userName}, #{userNickname}, #{userGender}, 
+		#{userHobby}, #{userEmail}, #{userTel}, #{userAddress}, 'USER', SYSDATE(), SYSDATE());
     </insert>
     
     <!-- 회원 수 조회 -->

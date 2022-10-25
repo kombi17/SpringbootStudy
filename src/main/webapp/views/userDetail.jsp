@@ -10,8 +10,8 @@ uri="http://www.springframework.org/security/tags" %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="/resources/css/common.css" />
-    <link rel="stylesheet" href="/resources/css/input-style.css" />
+    <link rel="stylesheet" href="\resources\css\common.css" />
+    <link rel="stylesheet" href="\resources\css\input-style.css" />
 
     <script
       src="https://kit.fontawesome.com/245c493145.js"
@@ -31,70 +31,39 @@ uri="http://www.springframework.org/security/tags" %>
         <div id="main-content">
           <div class="container">
             <h1>myPage</h1>
-            <form method="post" action="/user/myPage">
+            <form method="post" action="/user/detail/update" onsubmit="return infoValidate()">
               <div>${loginuser.userId} 님의 회원 정보를 수정합니다.</div>
-              <!-- 변경할 비밀번호 -->
-              <div class="input-content">
-                <label for="userPw">New PW</label>
-                <input
-                  type="password"
-                  id="changedUserPw"
-                  name="changedUserPw"
-                />
-              </div>
 
               <div class="input-content">
                 <label for="userNickname">닉네임</label>
-                <input type="text" id="userNickname" name="userNickname" autocomplete="off"  />
+                <input type="text" id="userNickname" name="userNickname" autocomplete="off" value="${loginuser.userNickname}" />
               </div class="input-content">
-              <span class="signUp-msg" id="nicknameMsg">영어, 숫자, 한글 2~10자 사이로 작성해주세요.</span>
 
               <div class="input-content">
                 <label for="userEmail">E-mail</label>
-                <input type="text" id="userEmail" name="userEmail" autocomplete="off" />
+                <input type="text" id="userEmail" name="userEmail" autocomplete="off" value="${loginuser.userEmail}" />
               </div class="input-content">
-              <span class="signUp-msg" id="emailMsg">메일을 받을 수 있는 이메일을 입력해주세요.</span>
 
               <div class="input-content">
                 <label for="userTel">전화번호</label>
-                <input type="text" id="userTel" name="userTel" autocomplete="off" />
+                <input type="text" id="userTel" name="userTel" autocomplete="off" value="${loginuser.userTel}" />
               </div class="input-content">
-              <span class="signUp-msg" id="telMsg">전화번호를 입력해주세요.(- 제외)</span>
 
 
-              <!-- API 사용 -->
+              <c:set var="address" value="${fn:split(loginuser.userAddress, ',,')}" />
               <div class="input-content">
                 <label for="sample4_postcode">주소</label>
-                <input type="text" id="sample4_postcode" name="userAddress" autocomplete="off">
+                <input type="text" id="sample4_postcode" name="userAddress" autocomplete="off" value="${address[0]}" />
                 <input type="button" name="userAddress" onclick="sample4_execDaumPostcode()" value="검색"><br>
               </div>
               <div class="input-content">
                 <label for="sample4_roadAddress">도로명 주소</label>
-                <input type="text" id="sample4_roadAddress" name="userAddress" autocomplete="off">
+                <input type="text" id="sample4_roadAddress" name="userAddress" autocomplete="off" value="${address[1]}" />
               </div>
               <div class="input-content">
                 <label for="sample4_detailAddress">상세 주소</label>
-                <input type="text" id="sample4_detailAddress" name="userAddress" autocomplete="off">
+                <input type="text" id="sample4_detailAddress" name="userAddress" autocomplete="off" value="${address[2]}" />
               </div>
-
-              <div class="input-content">
-                <div class="input-title">취미</div>
-                <label for="book">독서</label>
-                <input type="checkbox" name="userHobby" id="book" value="book" />
-
-                <label for="music">음악 감상</label>
-                <input type="checkbox" name="userHobby" id="music" value="music" />
-
-                <label for="movie">영화 감상</label>
-                <input type="checkbox" name="userHobby" id="movie" value="movie" />
-
-                <label for="knitting">뜨개질</label>
-                <input type="checkbox" name="userHobby" id="knitting" value="knitting" />
-
-                <label for="baking">베이킹</label>
-                <input type="checkbox" name="userHobby" id="baking" value="baking" />
-              </div class="input-content">
-              <span class="signUp-msg" id="hobbyMsg">1개 이상의 취미를 선택해주세요.</span>
 
               <div class="btn-area">
                 <button type="submit" class="modify-btn">회원 정보 수정</button>
@@ -112,6 +81,7 @@ uri="http://www.springframework.org/security/tags" %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <!-- js -->
-    <script src="/resources/js/common.js"></script>
+    <script src="\resources\js\common.js"></script>
+    <script src="\resources\js\userDetail.js"></script>
   </body>
 </html>

@@ -3,6 +3,7 @@ package com.ishift.bootStudy.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+@EnableWebSecurity
 @Configuration
 public class SecurityConfiguration {
 	// https://spring.io/guides/gs/securing-web/ 
@@ -65,7 +67,7 @@ public class SecurityConfiguration {
             .authorizeHttpRequests((authz) -> authz
 				// .antMatchers : 페이지에 접근할 수 있는 권한 설정
 				// 로그인, 회원가입, 홈 접근 허용
-				.antMatchers("/", "/user/loginForm", "/user/signUpForm").permitAll() 
+				.antMatchers("/", "/user/loginForm", "/user/signUp").permitAll() 
                 .anyRequest().authenticated()
                 .and()
             )
@@ -79,8 +81,11 @@ public class SecurityConfiguration {
 //            	하위 두 줄은 핸들러에서 설정했기 때문에 주석 처리함
 //            	.defaultSuccessUrl("/") // 로그인 성공 시 home 화면으로 이동
 //            	.failureUrl("/user/loginForm") // 로그인 실패 시 login 화면
-            	.loginPage("/user/loginForm") // 로그인 페이지 주소 설정
-            	.loginProcessingUrl("/user/login") // 로그인페이지 form태그 action 속성 url
+//            	.loginPage("/user/loginForm") // 로그인 페이지 주소 설정
+        		// 로그인페이지 form태그 action 속성 url : 해당 url로 진입 시 시큐리티가 로그인 기능을 위임 받아서 처리
+        		// /user/login 이라는 주소를 컨트롤러에 만들 필요 없이 /user/login으로 들어오면 @Service 어노테이션으로 구현되고 
+        		// UserDetailService를 구현한 클래스 내에 loadUserByUsername 메서드가 자동으로 실행
+            	.loginProcessingUrl("/user/login") 
             	.usernameParameter("userId") // 권한 처리할 때 userId라는 명으로 파라미터를 받겠다. default : username
             	.passwordParameter("userPw") // default : password
             	// 로그인 성공 핸들러

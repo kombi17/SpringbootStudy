@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ishift.bootStudy.model.vo.Pagination;
+import com.ishift.bootStudy.model.vo.RegisterUser;
 import com.ishift.bootStudy.model.vo.User;
 
 @Repository
@@ -23,8 +24,8 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public void saveUser(User user) {
-		sqlSession.insert("userMapper.saveUser", user);
+	public void signUp(RegisterUser registerUser) {
+		sqlSession.insert("userMapper.signUp", registerUser);
 	}
 
 	@Override
