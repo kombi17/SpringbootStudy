@@ -13,10 +13,10 @@
 	<!-- 회원 가입 -->
     <insert id="saveUser" parameterType="com.ishift.bootStudy.model.vo.User">
         INSERT INTO user (USER_ID, USER_PW, USER_NAME, USER_NICKNAME, USER_GENDER, 
-        USER_HOBBY, USER_EMAIL, USER_TEL, USER_ADDRESS, USER_ADDRESS_DETAIL,
+        USER_HOBBY, USER_EMAIL, USER_TEL, USER_ADDRESS, 
         USER_AUTH, APPEND_DATE, UPDATE_DATE)
         VALUES (#{userId}, #{userPw}, #{userName}, #{userNickname},  #{userGender},
-         #{userHobby}, #{userEmail}, #{userTel}, #{userAddress}, #{userAddressDetail}, 
+         #{userHobby}, #{userEmail}, #{userTel}, #{userAddress}, 
         'USER', SYSDATE(), SYSDATE())
     </insert>
     

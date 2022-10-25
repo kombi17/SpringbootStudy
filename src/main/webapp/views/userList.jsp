@@ -15,8 +15,8 @@ uri="http://www.springframework.org/security/tags" %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="/resources/css/common.css" />
-    <link rel="stylesheet" href="/resources/css/userList-style.css" />
+    <link rel="stylesheet" href="../resources/css/common.css" />
+    <link rel="stylesheet" href="../resources/css/userList-style.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script
@@ -35,23 +35,41 @@ uri="http://www.springframework.org/security/tags" %>
 
         <!-- main-content -->
         <div id="main-content">
-          <div class="container">
-            <!-- 컬럼 제목 -->
-            <div class="item columnTitle">아이디</div>
-            <div class="item columnTitle">이름</div>
-            <div class="item columnTitle">가입 날짜</div>
-            <!-- 내용 -->
-            <c:forEach var="user" items="${userlist}">
-              <div class="item">
-                <a
-                  id="goToUserDetailPage"
-                  href="/user/detail/${user.userNo}?cp=${pagination.currentPage}"
-                  >${user.userId} <i class="fa-solid fa-ellipsis"></i
-                ></a>
-              </div>
-              <div class="item">${user.userName}</div>
-              <div class="item">${user.appendDate}</div>
-            </c:forEach>
+          <div id="scroll-box">
+            <div class="container">
+              <!-- 컬럼 제목 -->
+              <div class="item columnTitle">아이디</div>
+              <div class="item columnTitle">이름</div>
+              <div class="item columnTitle">닉네임</div>
+              <div class="item columnTitle">성별</div>
+              <div class="item columnTitle">취미</div>
+              <div class="item columnTitle">이메일</div>
+              <div class="item columnTitle">전화번호</div>
+              <div class="item columnTitle">주소</div>
+              <div class="item columnTitle">권한</div>
+              <div class="item columnTitle">가입 날짜</div>
+              <div class="item columnTitle">수정 날짜</div>
+              <!-- 내용 -->
+              <c:forEach var="user" items="${userlist}">
+                <div class="item">
+                  <a
+                    id="goToUserDetailPage"
+                    href="/user/detail/${user.userNo}?cp=${pagination.currentPage}"
+                    >${user.userId}
+                  </a>
+                </div>
+                <div class="item">${user.userName}</div>
+                <div class="item">${user.userNickname}</div>
+                <div class="item">${user.userGender}</div>
+                <div class="item">${user.userHobby}</div>
+                <div class="item">${user.userEmail}</div>
+                <div class="item">${user.userTel}</div>
+                <div class="item">${user.userAddress}</div>
+                <div class="item">${user.userAuth}</div>
+                <div class="item">${user.appendDate}</div>
+                <div class="item">${user.updateDate}</div>
+              </c:forEach>
+            </div>
           </div>
         </div>
       </div>
@@ -112,6 +130,6 @@ uri="http://www.springframework.org/security/tags" %>
       </c:if>
     </main>
 
-    <script src="/resources/js/common.js"></script>
+    <script src="../resources/js/common.js"></script>
   </body>
 </html>

@@ -135,3 +135,20 @@ header {
   color: tomato;
   animation: blink-effect 1.5s step-end 2;
 }
+
+.btn-area {
+  margin: 90px 0;
+  text-align: center;
+}
+
+.btn-area button {
+  background-color: tomato;
+  color: white;
+
+  font-size: 17px;
+  font-weight: bolder;
+  font-family: "Silkscreen", "Poor Story";
+
+  border: none;
+  border-radius: 15px;
+}

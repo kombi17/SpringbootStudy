@@ -33,6 +33,7 @@ uri="http://www.springframework.org/security/tags" %>
           <div class="container">
             <h1>Sign Up</h1>
 			      <hr>
+            <!-- 주소 연결을 왜 못하지? && onsubmit에서도 false 값이 왜 안 되지... -->
             <form action="/user/signUp" method="post" onsubmit="return signUpValidate()">
               <div class="input-content">
                 <label for="userId">ID</label>

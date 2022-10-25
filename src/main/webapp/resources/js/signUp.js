@@ -4,17 +4,14 @@
 const checkObj = {
   inputId: false,
   inputPw: false,
-  inputName: false,
   inputNickname: false,
   inputGenderList: false,
   inputHobbyList: false,
   inputEmail: false,
   inputTel: false,
-  inputAddress: false,
-  inputAddressDetail: false,
 };
 
-const inputAddress = document.getElementsByName("userAddress");
+// const inputAddress = document.getElementsByName("userAddress");
 
 // 아이디 빈칸 검사
 const inputId = document.getElementById("userId");
@@ -234,16 +231,13 @@ function signUpValidate() {
   let str;
 
   for (let key in checkObj) {
-    if (!checkObj[key]) {
+    if (checkObj[key] === false) {
       switch (key) {
         case "inputId":
           str = "아이디를";
           break;
         case "inputPw":
           str = "비밀번호를";
-          break;
-        case "inputName":
-          str = "이름을";
           break;
         case "inputNickname":
           str = "닉네임을";

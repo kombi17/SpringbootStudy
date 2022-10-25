@@ -23,7 +23,6 @@ public class User implements UserDetails{
 	private String userEmail;
 	private String userTel;
 	private String userAddress;
-	private String userAddressDetail;
 	private String userAuth;
 	private String appendDate;
 	private String updateDate;
