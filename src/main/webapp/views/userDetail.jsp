@@ -36,39 +36,40 @@ uri="http://www.springframework.org/security/tags" %>
 
               <div class="input-content">
                 <label for="userNickname">닉네임</label>
-                <input type="text" id="userNickname" name="userNickname" autocomplete="off" value="${loginuser.userNickname}" />
+                <input type="text" id="userNickname" name="updateUserNickname" autocomplete="off" value="${loginuser.userNickname}" />
               </div class="input-content">
 
               <div class="input-content">
                 <label for="userEmail">E-mail</label>
-                <input type="text" id="userEmail" name="userEmail" autocomplete="off" value="${loginuser.userEmail}" />
+                <input type="text" id="userEmail" name="updateUserEmail" autocomplete="off" value="${loginuser.userEmail}" />
               </div class="input-content">
 
               <div class="input-content">
                 <label for="userTel">전화번호</label>
-                <input type="text" id="userTel" name="userTel" autocomplete="off" value="${loginuser.userTel}" />
+                <input type="text" id="userTel" name="updateUserTel" autocomplete="off" value="${loginuser.userTel}" />
               </div class="input-content">
 
 
               <c:set var="address" value="${fn:split(loginuser.userAddress, ',,')}" />
               <div class="input-content">
                 <label for="sample4_postcode">주소</label>
-                <input type="text" id="sample4_postcode" name="userAddress" autocomplete="off" value="${address[0]}" />
+                <input type="text" id="sample4_postcode" name="updateUserAddress" autocomplete="off" value="${address[0]}" />
                 <input type="button" name="userAddress" onclick="sample4_execDaumPostcode()" value="검색"><br>
               </div>
               <div class="input-content">
                 <label for="sample4_roadAddress">도로명 주소</label>
-                <input type="text" id="sample4_roadAddress" name="userAddress" autocomplete="off" value="${address[1]}" />
+                <input type="text" id="sample4_roadAddress" name="updateUserAddress" autocomplete="off" value="${address[1]}" />
               </div>
               <div class="input-content">
                 <label for="sample4_detailAddress">상세 주소</label>
-                <input type="text" id="sample4_detailAddress" name="userAddress" autocomplete="off" value="${address[2]}" />
+                <input type="text" id="sample4_detailAddress" name="updateUserAddress" autocomplete="off" value="${address[2]}" />
               </div>
 
               <div class="btn-area">
-                <button type="submit" class="modify-btn">회원 정보 수정</button>
+                <button type="submit" class="modify-btn" onclick="showResult()">회원 정보 수정</button>
                 <button type="reset" class="reset-btn">초기화</button>
                 <button type="button" id="goToList" >목록으로</button>
+						    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 
               </div>
             </form>
@@ -77,8 +78,14 @@ uri="http://www.springframework.org/security/tags" %>
       </div>
     </main>
 
+    <script>
+      const msg = "${msg}";
+    </script>
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script src="../resources/js/userDetail.js"></script>
 
     <!-- js -->
     <script src="\resources\js\common.js"></script>

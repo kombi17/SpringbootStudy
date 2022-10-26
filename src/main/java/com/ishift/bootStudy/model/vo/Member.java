@@ -11,18 +11,18 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Data
-public class User implements UserDetails{
+public class Member implements UserDetails{
 	
 	private int userNo;
 	private String userId;
 	private String userPw;
 	private String userName;
-//	private String userNickname;
-//	private String userGender;
-//	private String userHobby;
-//	private String userEmail;
-//	private String userTel;
-//	private String userAddress;
+	private String userNickname;
+	private String userGender;
+	private String userHobby;
+	private String userEmail;
+	private String userTel;
+	private String userAddress;
 	private String userAuth;
 	private String appendDate;
 	private String updateDate;
@@ -40,7 +40,7 @@ public class User implements UserDetails{
         return this.userPw;
     }
 
-    // 시큐리티의 userName
+    // 시큐리티의 username
     // -> 따라서 얘는 인증할 때 id를 봄
     @Override
     public String getUsername() {

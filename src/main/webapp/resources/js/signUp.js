@@ -263,7 +263,7 @@ function signUpValidate() {
     }
   }
 
-  return false;
+  return true;
 }
 
 function sample4_execDaumPostcode() {

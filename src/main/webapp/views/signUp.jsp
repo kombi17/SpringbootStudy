@@ -99,11 +99,11 @@ uri="http://www.springframework.org/security/tags" %>
               <div class="input-content">
                 <div class="input-title">성별</div>
                 <label for="male">남성</label>
-                <input type="radio" name="userGender" id="male" />
+                <input type="radio" name="userGender" id="male" value="male"/>
                 <label for="female">여성</label>
-                <input type="radio" name="userGender" id="female" />
+                <input type="radio" name="userGender" id="female" value="female"/>
                 <label for="noSelect">공개 안 함</label>
-                <input type="radio" name="userGender" id="noSelect" />
+                <input type="radio" name="userGender" id="noSelect" value="noSelect"/>
               </div class="input-content">
               <span class="signUp-msg" id="genderMsg">성별을 선택해주세요.</span>
 
@@ -128,6 +128,7 @@ uri="http://www.springframework.org/security/tags" %>
 
 
               <button type="submit" class="submit-btn">회원 가입</button>
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
             </form>
           </div>
         </div>

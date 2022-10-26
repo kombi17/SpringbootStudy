@@ -55,6 +55,10 @@ function printAlert(el, message) {
   return false;
 }
 
+function shorResult() {
+  alert(msg);
+}
+
 function sample4_execDaumPostcode() {
   new daum.Postcode({
     oncomplete: function (data) {

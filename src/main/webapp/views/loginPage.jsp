@@ -34,8 +34,8 @@
 					<br>
 					<span id="exception">${exception}</span> 
 					<form action="/user/login" method="post" onsubmit="return inputValidate()"> 
-						<div class="input-content"> <label for="userId">ID</label> <input type="text" id="userId" name="userId" autocomplete="off" /> </div> 
-						<div class="input-content"> <label for="userPw">PW</label> <input type="password" id="userPw" name="userPw" /> </div> 
+						<div class="input-content"> <label for="username">ID</label> <input type="text" id="username" name="username" autocomplete="off" /> </div> 
+						<div class="input-content"> <label for="password">PW</label> <input type="password" id="password" name="password" /> </div> 
 						<div class="input-content"> <input type="checkbox" name="remember-me" id="saveIdCheckbox" /> <label for="saveIdCheckbox">   Save </label> </div> 
 						<button type="submit" class="submit-btn"> login </button>
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 

@@ -16,25 +16,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ishift.bootStudy.model.vo.RegisterUser;
-import com.ishift.bootStudy.model.vo.User;
-import com.ishift.bootStudy.service.UserServiceImpl;
+import com.ishift.bootStudy.model.vo.Member;
+import com.ishift.bootStudy.service.MemberServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/user") // controller가 많아질 때는 어느 컨트롤러인지 알 수 있도록
 @RequiredArgsConstructor
-public class UserController {
+public class MemberController {
 	
     @Autowired
-    UserServiceImpl userService;
+    MemberServiceImpl memberService;
 
     /**
      * 회원가입 폼
      * @return
      */
-    @GetMapping("/signUp")
+    @GetMapping("/signUpForm")
     public String signUpForm() {
     	
     	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -50,20 +49,41 @@ public class UserController {
 
     /**
      * 회원가입 진행
-     * @param user
+     * @param registerUser, userAddress, userGender, userHobby
      * @return
      */
     @PostMapping("/signUp")
-    public String signUp(RegisterUser registerUser) {
+    public String signUp(Member member,
+    		String[] userAddress, String[] userGender, String[] userHobby) {
+    	
+    	
     	try {
-            userService.signUp(registerUser);
+    		// String[] userAddress, String[] userGender, String[] userHobby
+    		// name이 userXXX인 파라미터의 값을 모두 배열에 담아서 반환
+    		// String.join("구분자", 배열) : 배열을 하나의 문자로 합치는 메서드
+    		
+    		member.setUserAddress(String.join(",,", userAddress));
+    		member.setUserGender(String.join(",,", userGender));
+    		member.setUserHobby(String.join(",,", userHobby));
+    		
+    		// 성별과 취미는 유효성 검사 있지만 주소는 없으므로 컨트롤러에서 처리
+    		if(member.getUserAddress().equals(",,,,")) {
+    			// 주소 입력 X
+    			member.setUserAddress(null);
+    		}
+    		
+    		// 회원 가입
+            memberService.signUp(member);
             
     	}catch (Exception e) {
 			e.printStackTrace();
 		}
     	
-        return "redirect:/user/loginForm"; 
+        return "redirect:/"; 
     }
+    
+    
+    
     
     /**
      * 이메일 중복 체크
@@ -74,7 +94,7 @@ public class UserController {
     @GetMapping("/emailDupCheck")
     public int emailDupCheck(String inputEmail) {
     	System.out.println(inputEmail);
-    	return userService.emailDupCheck(inputEmail);
+    	return memberService.emailDupCheck(inputEmail);
     }
     
     /**
@@ -123,7 +143,7 @@ public class UserController {
 		try {
 			Map<String, Object> map = null;
 			
-			map = userService.selectAllUser(cp);
+			map = memberService.selectAllUser(cp);
 			
 			model.addAttribute("map", map);
 			
@@ -149,7 +169,7 @@ public class UserController {
 			
 			String userId = principal.getName();
 			
-			User loginUser = userService.selectLoginUser(userId);
+			Member loginUser = memberService.selectLoginUser(userId);
 			
 			if(loginUser.getUserNo() == userNo) {
 				// 로그인 한 유저와 클릭한 유저가 같을 경우
@@ -173,7 +193,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/detail/update")
-    public String userUpdate(User user) {
+    public String userUpdate(String[] updateUserAddress, Principal principal,
+    						@RequestParam Map<String, Object> paramMap,
+    						Model model) {
        
     	// PUT 요청 : 리소스를 생성 및 업데이트 하기 위해 서버로 데이터를 보낼 때 쓰는 방법
     	// post와 put의 차이 : put 요청은 멱등성 유지, 동일한 put 요청을 여러 번 호출해도 항상 동일한 결과 생성
@@ -186,8 +208,31 @@ public class UserController {
     	// 요청 시 전달된 파라미터를 구분하지 않고 모두 map에 담아서 얻어옴
     	// name 속성 값이 map의 key
     	
+    	// 필요한 값 : paramMap에 들어있음(닉네임, 이메일, 전화번호) // 주소, userNo(principal 통해서 받기)
+    	String userId = principal.getName();
     	
-        
+    	int userNo = memberService.selectLoginUser(userId).getUserNo();
+    	
+    	// 주소 배열을 String으로 변경
+    	String userAddress = String.join(",,,,", updateUserAddress);
+    	
+    	if(userAddress.equals(",,,,")) userAddress = null;
+    	
+    	paramMap.put("userNo", userNo);
+    	paramMap.put("userAddress", userAddress);
+    	
+    	int result = memberService.userUpdate(paramMap);
+    	
+    	String msg = null;
+    	
+    	if(result>0) {
+    		msg = "회원 정보가 수정되었습니다.";
+    	} else {
+    		msg = "회원 정보 수정 실패";
+    	}
+    	
+    	model.addAttribute("msg", msg);
+    	
         return "redirect:/"; 
     }
     

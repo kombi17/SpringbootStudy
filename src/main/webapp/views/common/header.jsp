@@ -25,7 +25,7 @@
         </li>
         <sec:authorize access="isAnonymous()">
           <li class="header-menu">
-            <a href="/user/signUp"
+            <a href="/user/signUpForm"
               ><i class="fa-solid fa-user-plus"></i> Sign Up</a
             >
           </li>
