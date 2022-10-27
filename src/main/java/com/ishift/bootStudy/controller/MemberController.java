@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ishift.bootStudy.model.vo.Member;
 import com.ishift.bootStudy.service.MemberServiceImpl;
@@ -54,8 +55,11 @@ public class MemberController {
      */
     @PostMapping("/signUp")
     public String signUp(Member member,
-    		String[] userAddress, String[] userGender, String[] userHobby) {
+    		String[] userAddress, String[] userGender, String[] userHobby,
+    		RedirectAttributes ra) {
     	
+    	int result = 0;
+    	String path = null;
     	
     	try {
     		// String[] userAddress, String[] userGender, String[] userHobby
@@ -73,13 +77,22 @@ public class MemberController {
     		}
     		
     		// 회원 가입
-            memberService.signUp(member);
+            result = memberService.signUp(member);
+            
+            
+            if(result>0) {
+            	ra.addFlashAttribute("message", "회원가입이 완료되었습니다.");
+            	path = "redirect:/";
+            } else {
+            	ra.addFlashAttribute("message", "회원 가입 실패!");
+            	path = "redirect:/user/signUpForm";
+            }
             
     	}catch (Exception e) {
 			e.printStackTrace();
 		}
     	
-        return "redirect:/"; 
+        return path; 
     }
     
     
@@ -195,11 +208,12 @@ public class MemberController {
     @PostMapping("/detail/update")
     public String userUpdate(String[] updateUserAddress, Principal principal,
     						@RequestParam Map<String, Object> paramMap,
-    						Model model) {
+    						RedirectAttributes ra) {
        
     	// PUT 요청 : 리소스를 생성 및 업데이트 하기 위해 서버로 데이터를 보낼 때 쓰는 방법
     	// post와 put의 차이 : put 요청은 멱등성 유지, 동일한 put 요청을 여러 번 호출해도 항상 동일한 결과 생성
     	// 멱등성 : 여러 번 수행해도 결과가 같은 성질, 호출로 인해 데이터가 변경되지 않는다.
+    	// 일단은 post 요청으로 기능 구현
     	
     	// @RequestParam("name속성값") 자료형 변수명 : 클라이언트 요청시 같이 전달된 파라미터를 변수에 저장
     	// name 속성 값을 이용해 지정!! name속성값과 파라미터를 저장할 변수 이름을 동일하게 작성하면 어노테이션 생략 가능
@@ -214,7 +228,7 @@ public class MemberController {
     	int userNo = memberService.selectLoginUser(userId).getUserNo();
     	
     	// 주소 배열을 String으로 변경
-    	String userAddress = String.join(",,,,", updateUserAddress);
+    	String userAddress = String.join(",,", updateUserAddress);
     	
     	if(userAddress.equals(",,,,")) userAddress = null;
     	
@@ -227,13 +241,14 @@ public class MemberController {
     	
     	if(result>0) {
     		msg = "회원 정보가 수정되었습니다.";
+    		
     	} else {
     		msg = "회원 정보 수정 실패";
     	}
     	
-    	model.addAttribute("msg", msg);
+    	ra.addFlashAttribute("message", msg);
     	
-        return "redirect:/"; 
+        return "redirect:/user/list"; 
     }
     
     

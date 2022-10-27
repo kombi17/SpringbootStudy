@@ -78,9 +78,7 @@ uri="http://www.springframework.org/security/tags" %>
       </div>
     </main>
 
-    <script>
-      const msg = "${msg}";
-    </script>
+    <%@ include file="../views/common/footer.jsp" %>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

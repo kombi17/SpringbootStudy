@@ -134,6 +134,8 @@ uri="http://www.springframework.org/security/tags" %>
       </c:if>
     </main>
 
+    <%@ include file="../views/common/footer.jsp" %>
+
     <script src="../resources/js/common.js"></script>
   </body>
 </html>

@@ -40,6 +40,10 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public List<Member> selectAllUser(Pagination pagination) {
 		
+		// Mybatis에서 제공하는 rowbounds 객체 사용
+		
+		// 전체 조회 결과에서 몇 개의 행을 건너 뛰고(offset)
+		// 그 다음 몇 개의 행만(limit) 조회할 것인지 지정
 		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit();
 		
 		RowBounds rowbounds = new RowBounds(offset, pagination.getLimit());

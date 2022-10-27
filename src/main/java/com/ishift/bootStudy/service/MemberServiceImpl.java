@@ -89,11 +89,14 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 	@Override
 	public Map<String, Object> selectAllUser(int cp){
 		
+		// 페이지네이션 객체 생성
 		int listCount = memberMapper.countUser();
 		Pagination pagination = new Pagination(cp, listCount);
 		
+		// 게시글 목록 조회
 		List<Member> userList = memberMapper.selectAllUser(pagination);
 		
+		// Map에 담아서 반환
 		Map<String , Object> map = new HashMap<String, Object>();
 		
 		map.put("pagination", pagination);

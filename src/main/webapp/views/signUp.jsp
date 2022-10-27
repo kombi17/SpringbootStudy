@@ -58,24 +58,24 @@ uri="http://www.springframework.org/security/tags" %>
 
               <div class="input-content">
                 <label for="userName">이름</label>
-                <input type="text" id="userName" name="userName" autocomplete="off"  />
+                <input type="text" id="userName" name="userName" autocomplete="off" required />
               </div class="input-content">
 
               <div class="input-content">
                 <label for="userNickname">닉네임</label>
-                <input type="text" id="userNickname" name="userNickname" autocomplete="off"  />
+                <input type="text" id="userNickname" name="userNickname" autocomplete="off" required />
               </div class="input-content">
               <span class="signUp-msg" id="nicknameMsg">영어, 숫자, 한글 2~10자 사이로 작성해주세요.</span>
 
               <div class="input-content">
                 <label for="userEmail">E-mail</label>
-                <input type="text" id="userEmail" name="userEmail" autocomplete="off" />
+                <input type="text" id="userEmail" name="userEmail" autocomplete="off" required />
               </div class="input-content">
               <span class="signUp-msg" id="emailMsg">메일을 받을 수 있는 이메일을 입력해주세요.</span>
 
               <div class="input-content">
                 <label for="userTel">전화번호</label>
-                <input type="text" id="userTel" name="userTel" autocomplete="off" />
+                <input type="text" id="userTel" name="userTel" autocomplete="off" required />
               </div class="input-content">
               <span class="signUp-msg" id="telMsg">전화번호를 입력해주세요.(- 제외)</span>
 
@@ -92,7 +92,7 @@ uri="http://www.springframework.org/security/tags" %>
               </div>
               <div class="input-content">
                 <label for="sample4_detailAddress">상세 주소</label>
-                <input type="text" id="sample4_detailAddress" name="userAddress" autocomplete="off">
+                <input type="text" id="sample4_detailAddress" name="userAddress" autocomplete="off" required>
               </div>
               
 
@@ -134,6 +134,8 @@ uri="http://www.springframework.org/security/tags" %>
         </div>
       </div>
     </main>
+
+    <%@ include file="../views/common/footer.jsp" %>
 
     <!-- jQuery 라이브러리 추가 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
