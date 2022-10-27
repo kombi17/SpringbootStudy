@@ -10,6 +10,10 @@
   href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap"
   rel="stylesheet"
 />
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap"
+  rel="stylesheet"
+/>
 
 <header class="header">
   <div id="title">

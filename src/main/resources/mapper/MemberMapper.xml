@@ -43,7 +43,7 @@
 	
 	<update id="userUpdate">
 		UPDATE user SET USER_NICKNAME = #{updateUserNickname}, USER_EMAIL = #{updateUserEmail}, 
-		USER_TEL = #{updateUserTel}, USER_ADDRESS = #{userAddress}
+		USER_TEL = #{updateUserTel}, USER_ADDRESS = #{userAddress}, UPDATE_DATE = #{updateDate}
 		WHERE USER_NO = #{userNo}
 	</update>
 	

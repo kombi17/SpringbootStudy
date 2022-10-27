@@ -123,7 +123,7 @@ inputEmail.addEventListener("input", function () {
 
   // 입력된 경우
   // 이메일 정규식
-  const emailRegExp = /^[\w\-\_]{4,}@[\w\-\_]+(\.\w+){1,3}$/;
+  const emailRegExp = /^[\w\-\_]{3,}@[\w\-\_]+(\.\w+){1,3}$/;
 
   if (emailRegExp.test(inputEmail.value)) {
     // 유효한 경우

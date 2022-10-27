@@ -118,6 +118,14 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 	 * @param paramMap
 	 */
 	public int userUpdate(Map<String, Object> paramMap) {
+		
+		// 수정 날짜
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
+	    Date time = new Date();
+	    String localTime = format.format(time);
+		
+		paramMap.put("updateDate", localTime);
+		
 		return memberMapper.userUpdate(paramMap);
 	}
 

@@ -85,8 +85,9 @@ uri="http://www.springframework.org/security/tags" %>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     
-    <script src="../resources/js/userDetail.js"></script>
-
+    <!-- 다음 주소 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   
     <!-- js -->
     <script src="\resources\js\common.js"></script>
     <script src="\resources\js\userDetail.js"></script>
