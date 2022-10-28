@@ -227,10 +227,11 @@ for (var i = 0; i < inputHobbyList.length; i++) {
 
 function signUpValidate() {
   // checkObj에 있는 모든 값에 접근해 false가 하나라도 있으면 form 제출 X
-
+  var bool = true;
   let str;
 
   for (let key in checkObj) {
+    console.log(checkObj[key]);
     if (checkObj[key] === false) {
       switch (key) {
         case "inputId":
@@ -258,12 +259,11 @@ function signUpValidate() {
       str += " 다시 확인해주세요.";
 
       alert(str);
-      document.getElementById(key).focus();
-      return false;
+      bool = false;
     }
   }
 
-  return true;
+  return bool;
 }
 
 function sample4_execDaumPostcode() {

@@ -59,7 +59,6 @@ public class MemberController {
     		RedirectAttributes ra) {
     	
     	int result = 0;
-    	String path = null;
     	
     	try {
     		// String[] userAddress, String[] userGender, String[] userHobby
@@ -82,17 +81,15 @@ public class MemberController {
             
             if(result>0) {
             	ra.addFlashAttribute("message", "회원가입이 완료되었습니다.");
-            	path = "redirect:/";
             } else {
             	ra.addFlashAttribute("message", "회원 가입 실패!");
-            	path = "redirect:/user/signUpForm";
             }
             
     	}catch (Exception e) {
 			e.printStackTrace();
 		}
     	
-        return path; 
+        return "redirect:/"; 
     }
     
     
