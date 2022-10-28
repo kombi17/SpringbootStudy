@@ -33,6 +33,16 @@
   padding: 7px;
 }
 
+.item::selection {
+  background-color: tomato;
+  color: white;
+}
+
+#goToUserDetailPage::selection {
+  background-color: tomato;
+  color: white;
+}
+
 .columnTitle {
   font-weight: bold;
   font-size: 18px;

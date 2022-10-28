@@ -5,7 +5,7 @@ import java.util.Map;
 import com.ishift.bootStudy.model.vo.Member;
 
 public interface MemberService {
-	
+
 	// 목록 조회
 	Map<String, Object> selectAllUser(int cp);
 	

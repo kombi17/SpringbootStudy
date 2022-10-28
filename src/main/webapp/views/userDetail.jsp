@@ -65,8 +65,26 @@ uri="http://www.springframework.org/security/tags" %>
                 <input type="text" id="sample4_detailAddress" name="updateUserAddress" autocomplete="off" value="${address[2]}" />
               </div>
 
+              <div class="input-content">
+                <div class="input-title">취미</div>
+                <label for="book">독서</label>
+                <input type="checkbox" name="updateUserHobby" id="book" value="book" />
+
+                <label for="music">음악 감상</label>
+                <input type="checkbox" name="updateUserHobby" id="music" value="music" />
+
+                <label for="movie">영화 감상</label>
+                <input type="checkbox" name="updateUserHobby" id="movie" value="movie" />
+
+                <label for="knitting">뜨개질</label>
+                <input type="checkbox" name="updateUserHobby" id="knitting" value="knitting" />
+
+                <label for="baking">베이킹</label>
+                <input type="checkbox" name="updateUserHobby" id="baking" value="baking" />
+              </div class="input-content">
+
               <div class="btn-area">
-                <button type="submit" class="modify-btn" onclick="showResult()">회원 정보 수정</button>
+                <button type="submit" class="modify-btn">회원 정보 수정</button>
                 <button type="reset" class="reset-btn">초기화</button>
                 <button type="button" id="goToList" >목록으로</button>
 						    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 

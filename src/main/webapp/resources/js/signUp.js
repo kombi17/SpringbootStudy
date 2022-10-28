@@ -213,7 +213,6 @@ for (var i = 0; i < inputGenderList.length; i++) {
   });
 }
 
-// done!! 기쁘다!!ㅠㅠ
 const inputHobbyList = document.getElementsByName("userHobby");
 const hobbyMsg = document.getElementById("hobbyMsg");
 var count = 0;

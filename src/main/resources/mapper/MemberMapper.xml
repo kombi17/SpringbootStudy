@@ -6,17 +6,47 @@
 	
     <!-- 로그인 -->
     <select id="getUserAccount" resultType="com.ishift.bootStudy.model.vo.Member">
-        SELECT * FROM user
-        WHERE USER_ID= #{username}
+	SELECT
+	   *
+	FROM
+	   user
+	WHERE
+	   USER_ID = #{username}
     </select>
 
 	<!-- 회원 가입 -->
     <insert id="signUp" parameterType="com.ishift.bootStudy.model.vo.Member">
-        INSERT INTO user(
-		USER_ID, USER_PW, USER_NAME, USER_NICKNAME, USER_GENDER, USER_HOBBY, USER_EMAIL, 
-		USER_TEL, USER_ADDRESS, USER_AUTH, APPEND_DATE, UPDATE_DATE)
-		VALUES (#{userId}, #{userPw}, #{userName}, #{userNickname}, #{userGender}, 
-		#{userHobby}, #{userEmail}, #{userTel}, #{userAddress}, #{userAuth}, #{appendDate}, #{updateDate});
+        INSERT INTO 
+            user
+            (
+		      USER_ID,
+		      USER_PW,
+		      USER_NAME,
+		      USER_NICKNAME,
+		      USER_GENDER,
+		      USER_HOBBY,
+		      USER_EMAIL, 
+		      USER_TEL,
+		      USER_ADDRESS,
+		      USER_AUTH,
+		      APPEND_DATE,
+		      UPDATE_DATE
+		  )
+		  VALUES
+		  (
+		      #{userId},
+		      #{userPw},
+		      #{userName},
+		      #{userNickname},
+		      #{userGender}, 
+		      #{userHobby},
+		      #{userEmail},
+		      #{userTel},
+		      #{userAddress},
+		      #{userAuth},
+		      #{appendDate},
+		      #{updateDate}
+		  );
     </insert>
     
     <!-- 회원 수 조회 -->
@@ -43,7 +73,8 @@
 	
 	<update id="userUpdate">
 		UPDATE user SET USER_NICKNAME = #{updateUserNickname}, USER_EMAIL = #{updateUserEmail}, 
-		USER_TEL = #{updateUserTel}, USER_ADDRESS = #{userAddress}, UPDATE_DATE = #{updateDate}
+		USER_TEL = #{updateUserTel}, USER_ADDRESS = #{userAddress}, USER_HOBBY = #{userHobby},
+		UPDATE_DATE = #{updateDate}
 		WHERE USER_NO = #{userNo}
 	</update>
 	
