@@ -36,9 +36,9 @@
 	</select>
 	
 	<!-- 이메일 중복 검사 -->
-	<select id="emailDupCheck" resultType="int">
+	<select id="idDupCheck" resultType="int">
 		SELECT COUNT(*) FROM user
-		WHERE USER_EMAIL = #{userEmail}
+		WHERE USER_ID = #{inputId}
 	</select>
 	
 	<update id="userUpdate">

@@ -55,24 +55,23 @@ public class MemberController {
      */
     @PostMapping("/signUp")
     public String signUp(Member member,
-    		String[] userAddress, String[] userGender, String[] userHobby,
+    		String[] userAddress, String[] userHobby,
     		RedirectAttributes ra) {
     	
     	int result = 0;
     	
     	try {
-    		// String[] userAddress, String[] userGender, String[] userHobby
+    		// String[] userAddress, String[] userHobby
     		// name이 userXXX인 파라미터의 값을 모두 배열에 담아서 반환
     		// String.join("구분자", 배열) : 배열을 하나의 문자로 합치는 메서드
     		
     		member.setUserAddress(String.join(",,", userAddress));
-    		member.setUserGender(String.join(",,", userGender));
     		member.setUserHobby(String.join(",,", userHobby));
     		
     		// 성별과 취미는 유효성 검사 있지만 주소는 없으므로 컨트롤러에서 처리
     		if(member.getUserAddress().equals(",,,,")) {
     			// 주소 입력 X
-    			member.setUserAddress(null);
+    			member.setUserAddress("no Address");
     		}
     		
     		// 회원 가입
@@ -92,19 +91,16 @@ public class MemberController {
         return "redirect:/"; 
     }
     
-    
-    
-    
     /**
      * 이메일 중복 체크
-     * @param inputEmail
+     * @param inputId
      * @return
      */
     @ResponseBody
-    @GetMapping("/emailDupCheck")
-    public int emailDupCheck(String inputEmail) {
-    	System.out.println(inputEmail);
-    	return memberService.emailDupCheck(inputEmail);
+    @GetMapping("/idDupCheck")
+    public int idDupCheck(String inputId) {
+    	System.out.println(inputId);
+    	return memberService.idDupCheck(inputId);
     }
     
     /**
@@ -172,7 +168,7 @@ public class MemberController {
     public String userDetailForm(@PathVariable("userNo") int userNo,
     		@RequestParam(value = "cp", required = false, defaultValue = "1") int cp,
     		Principal principal,
-    		Model model) throws Exception {
+    		Model model, RedirectAttributes ra) throws Exception {
 		
 		// 로그인 한 회원 1명의 정보 
 		try {
@@ -185,7 +181,9 @@ public class MemberController {
 				// 로그인 한 유저와 클릭한 유저가 같을 경우
 				model.addAttribute("loginuser", loginUser);
 				return "userDetail";
-			} 
+			} else {
+				ra.addFlashAttribute("message", userId + " 님의 정보만 수정이 가능합니다.");
+			}
 			
 			
 		} catch (Exception e) {
@@ -227,7 +225,7 @@ public class MemberController {
     	// 주소 배열을 String으로 변경
     	String userAddress = String.join(",,", updateUserAddress);
     	
-    	if(userAddress.equals(",,,,")) userAddress = null;
+    	if(userAddress.equals(",,,,")) userAddress = "no Address";
     	
     	paramMap.put("userNo", userNo);
     	paramMap.put("userAddress", userAddress);

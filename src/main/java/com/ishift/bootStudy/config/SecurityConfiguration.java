@@ -71,7 +71,7 @@ public class SecurityConfiguration {
             .authorizeHttpRequests((authz) -> authz
 				// .antMatchers : 페이지에 접근할 수 있는 권한 설정
 				// 로그인, 회원가입, 홈 접근 허용
-				.antMatchers("/", "/user/loginForm", "/user/signUpForm", "/user/signUp").permitAll() 
+				.antMatchers("/", "/user/loginForm", "/user/signUpForm", "/user/signUp", "/user/idDupCheck").permitAll() 
                 .anyRequest().authenticated()
                 .and()
             )

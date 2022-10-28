@@ -73,11 +73,11 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 	
 
 	/**
-	 * 이메일 중복 체크
+	 * 아이디 중복 체크
 	 */
 	@Override
-	public int emailDupCheck(String inputEmail) {
-		return memberMapper.emailDupCheck(inputEmail);
+	public int idDupCheck(String inputId) {
+		return memberMapper.idDupCheck(inputId);
 	}
 	
 	
