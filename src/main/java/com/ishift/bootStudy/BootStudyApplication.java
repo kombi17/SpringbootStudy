@@ -2,7 +2,11 @@ package com.ishift.bootStudy;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+
+import com.ishift.bootStudy.config.SecurityConfiguration;
 
 // @SpringBootApplication : 해당 어노테이션을 통해 스프링부트의 모든 설정이 관리됨
 @SpringBootApplication

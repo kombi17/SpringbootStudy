@@ -30,13 +30,35 @@ inputId.addEventListener("input", function () {
   // 입력된 경우
   const idRegExp = /^[a-z0-9]{6,20}$/g;
   if (idRegExp.test(inputId.value)) {
-    // 유효한 경우
-    idMsg.innerText = "사용 가능한 아이디 입니다.";
-    idMsg.classList.add("confirm");
-    idMsg.classList.remove("error");
-    checkObj.inputId = true;
+    $.ajax({
+      url: "idDupCheck",
+      // 현재 경로 : /user/signUp
+      // 상대 경로 : /user/idDupCheck
 
-    // 아이디 중복 체크 하면 좋을 것 같음!! ajax 이용?
+      data: { inputId: inputId.value },
+      type: "GET",
+      success: function (result) {
+        // result : controller에서 보낸 값
+        if (result == 1) {
+          // 중복 값 있음
+          idMsg.innerText = "중복되는 아이디입니다.";
+          idMsg.classList.add("error");
+          idMsg.classList.remove("confirm");
+          checkObj.inputId = false;
+        } else {
+          // 중복값 없음
+          // 유효한 경우
+          idMsg.innerText = "사용 가능한 아이디 입니다.";
+          idMsg.classList.add("confirm");
+          idMsg.classList.remove("error");
+          checkObj.inputId = true;
+        }
+      }, // success 종료
+      error: function () {
+        // ajax 오류
+        console.log("ajax error!");
+      }, // error 종료
+    }); // ajax 종료
   } else {
     // 유효하지 않은 경우
     idMsg.innerText = "적합하지 않은 아이디입니다.";
@@ -123,7 +145,7 @@ inputEmail.addEventListener("input", function () {
 
   // 입력된 경우
   // 이메일 정규식
-  const emailRegExp = /^[\w\-\_]{4,}@[\w\-\_]+(\.\w+){1,3}$/;
+  const emailRegExp = /^[\w\-\_]{3,}@[\w\-\_]+(\.\w+){1,3}$/;
 
   if (emailRegExp.test(inputEmail.value)) {
     // 유효한 경우
@@ -191,7 +213,6 @@ for (var i = 0; i < inputGenderList.length; i++) {
   });
 }
 
-// done!! 기쁘다!!ㅠㅠ
 const inputHobbyList = document.getElementsByName("userHobby");
 const hobbyMsg = document.getElementById("hobbyMsg");
 var count = 0;
@@ -227,10 +248,11 @@ for (var i = 0; i < inputHobbyList.length; i++) {
 
 function signUpValidate() {
   // checkObj에 있는 모든 값에 접근해 false가 하나라도 있으면 form 제출 X
-
+  var bool = true;
   let str;
 
   for (let key in checkObj) {
+    console.log(checkObj[key]);
     if (checkObj[key] === false) {
       switch (key) {
         case "inputId":
@@ -258,12 +280,11 @@ function signUpValidate() {
       str += " 다시 확인해주세요.";
 
       alert(str);
-      document.getElementById(key).focus();
-      return false;
+      bool = false;
     }
   }
 
-  return false;
+  return bool;
 }
 
 function sample4_execDaumPostcode() {

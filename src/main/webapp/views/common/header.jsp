@@ -10,6 +10,10 @@
   href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap"
   rel="stylesheet"
 />
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap"
+  rel="stylesheet"
+/>
 
 <header class="header">
   <div id="title">
@@ -25,7 +29,7 @@
         </li>
         <sec:authorize access="isAnonymous()">
           <li class="header-menu">
-            <a href="/user/signUp"
+            <a href="/user/signUpForm"
               ><i class="fa-solid fa-user-plus"></i> Sign Up</a
             >
           </li>

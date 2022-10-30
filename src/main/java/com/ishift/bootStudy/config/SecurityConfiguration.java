@@ -1,5 +1,8 @@
 package com.ishift.bootStudy.config;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,10 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import static org.springframework.security.config.Customizer.withDefaults;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @EnableWebSecurity
 @Configuration
@@ -48,6 +47,7 @@ public class SecurityConfiguration {
 	
 	
 	
+	
 	// 인증을 무시하기 위한 설정
 	// 기존에는 WebSecurityConfigurerAdapter를 상속했었기 때문에 override 어노테이션을 썼으나 지금은 X
 	// WebSecurityCustomizer를 빈으로 등록
@@ -63,11 +63,15 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-        	.csrf().disable() // 일반 사용자에 대해 session을 저장하지 않으므로 csrf를 disable 처리
+	        // 일반 사용자에 대해 session을 저장하지 않으므로 csrf를 disable 처리
+        	.csrf()
+        		.ignoringAntMatchers("/user/signUp")
+        		.ignoringAntMatchers("/user/detail/update")
+    		.and()
             .authorizeHttpRequests((authz) -> authz
 				// .antMatchers : 페이지에 접근할 수 있는 권한 설정
 				// 로그인, 회원가입, 홈 접근 허용
-				.antMatchers("/", "/user/loginForm", "/user/signUp").permitAll() 
+				.antMatchers("/", "/user/loginForm", "/user/signUpForm", "/user/signUp", "/user/idDupCheck").permitAll() 
                 .anyRequest().authenticated()
                 .and()
             )
@@ -81,13 +85,13 @@ public class SecurityConfiguration {
 //            	하위 두 줄은 핸들러에서 설정했기 때문에 주석 처리함
 //            	.defaultSuccessUrl("/") // 로그인 성공 시 home 화면으로 이동
 //            	.failureUrl("/user/loginForm") // 로그인 실패 시 login 화면
-//            	.loginPage("/user/loginForm") // 로그인 페이지 주소 설정
+            	.loginPage("/user/loginForm") // 로그인 페이지 주소 설정
         		// 로그인페이지 form태그 action 속성 url : 해당 url로 진입 시 시큐리티가 로그인 기능을 위임 받아서 처리
         		// /user/login 이라는 주소를 컨트롤러에 만들 필요 없이 /user/login으로 들어오면 @Service 어노테이션으로 구현되고 
         		// UserDetailService를 구현한 클래스 내에 loadUserByUsername 메서드가 자동으로 실행
             	.loginProcessingUrl("/user/login") 
-            	.usernameParameter("userId") // 권한 처리할 때 userId라는 명으로 파라미터를 받겠다. default : username
-            	.passwordParameter("userPw") // default : password
+//            	.usernameParameter("username") // 권한 처리할 때 userId라는 명으로 파라미터를 받겠다. default : username
+//            	.passwordParameter("password") // default : password
             	// 로그인 성공 핸들러
             	.successHandler(customAuthenticationSuccessHandler)
             	// 로그인 실패 핸들러 : UserDetailService 구현 필수

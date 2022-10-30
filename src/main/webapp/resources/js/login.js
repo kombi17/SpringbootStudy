@@ -11,8 +11,8 @@ if (error && errorContent != "") {
 
 // 입력 여부 유효성 확인
 function inputValidate() {
-  const inputId = document.getElementById("userId");
-  const inputPw = document.getElementById("userPw");
+  const inputId = document.getElementById("username");
+  const inputPw = document.getElementById("password");
 
   if (inputId.value.trim().length == 0) {
     alert("아이디를 입력해주세요.");

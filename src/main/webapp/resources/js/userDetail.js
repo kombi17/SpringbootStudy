@@ -3,6 +3,7 @@ function infoValidate() {
   const userNickname = document.getElementById("userNickname");
   const userTel = document.getElementById("userTel");
   const userEmail = document.getElementById("userEmail");
+  const userHobbyList = document.getElementsByName("userHobby");
 
   const nicknameRegExp = /^[a-zA-Z0-9가-힣]{2,10}$/; // 닉네임 정규식
   const telRegExp = /^0(1[01679]|2|[3-6][1-5]|70)\d{3,4}\d{4}$/; // 전화번호 정규식
@@ -43,6 +44,21 @@ function infoValidate() {
     // 유효하지 않은 경우
 
     return printAlert(userTel, "전화번호 형식이 올바르지 않습니다.");
+  }
+
+  var count = 0;
+  for (var i = 0; i < userHobbyList.length; i++) {
+    if (userHobbyList[i].checked) {
+      count++;
+    }
+    userHobbyList[i].addEventListener("change", function (e) {
+      if (e.target.checked) count += 1;
+      else count -= 1;
+    });
+
+    if (count == 0) {
+      return printAlert(userHobbyList, "취미를 한 개 이상 선택해주세요.");
+    }
   }
 
   return true; // true를 반환해서 form 제출 수행

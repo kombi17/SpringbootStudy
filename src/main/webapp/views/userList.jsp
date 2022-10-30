@@ -34,7 +34,7 @@ uri="http://www.springframework.org/security/tags" %>
         <%@ include file="/views/common/sidebar.jsp" %>
 
         <!-- main-content -->
-        <div id="main-content">
+        <div id="main-content" >
           <div id="scroll-box">
             <div class="container">
               <!-- 컬럼 제목 -->
@@ -61,10 +61,14 @@ uri="http://www.springframework.org/security/tags" %>
                 <div class="item">${user.userName}</div>
                 <div class="item">${user.userNickname}</div>
                 <div class="item">${user.userGender}</div>
-                <div class="item">${user.userHobby}</div>
+                <div class="item">
+                  ${fn:replace(user.userHobby, ',,', ', ')}
+                </div>
                 <div class="item">${user.userEmail}</div>
                 <div class="item">${user.userTel}</div>
-                <div class="item">${user.userAddress}</div>
+                <div class="item" style="justify-content: start;">
+                  ${fn:replace(user.userAddress, ',,', '<br>')}
+                </div>
                 <div class="item">${user.userAuth}</div>
                 <div class="item">${user.appendDate}</div>
                 <div class="item">${user.updateDate}</div>
@@ -129,6 +133,8 @@ uri="http://www.springframework.org/security/tags" %>
         </div>
       </c:if>
     </main>
+
+    <%@ include file="../views/common/footer.jsp" %>
 
     <script src="../resources/js/common.js"></script>
   </body>

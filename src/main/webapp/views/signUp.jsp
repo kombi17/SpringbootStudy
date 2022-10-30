@@ -33,7 +33,6 @@ uri="http://www.springframework.org/security/tags" %>
           <div class="container">
             <h1>Sign Up</h1>
 			      <hr>
-            <!-- 주소 연결을 왜 못하지? && onsubmit에서도 false 값이 왜 안 되지... -->
             <form action="/user/signUp" method="post" onsubmit="return signUpValidate()">
               <div class="input-content">
                 <label for="userId">ID</label>
@@ -47,7 +46,6 @@ uri="http://www.springframework.org/security/tags" %>
               </div>
               <span class="signUp-msg" id="idMsg">영어, 숫자 6-20자 사이로 작성해주세요.</span>
 
-              <!-- 아이디 중복검사 넣으면 좋을 것 같은데!! -->
 
               <div class="input-content">
                 <label for="userPw">PW</label>
@@ -58,24 +56,24 @@ uri="http://www.springframework.org/security/tags" %>
 
               <div class="input-content">
                 <label for="userName">이름</label>
-                <input type="text" id="userName" name="userName" autocomplete="off"  />
+                <input type="text" id="userName" name="userName" autocomplete="off" required />
               </div class="input-content">
 
               <div class="input-content">
                 <label for="userNickname">닉네임</label>
-                <input type="text" id="userNickname" name="userNickname" autocomplete="off"  />
+                <input type="text" id="userNickname" name="userNickname" autocomplete="off" required />
               </div class="input-content">
               <span class="signUp-msg" id="nicknameMsg">영어, 숫자, 한글 2~10자 사이로 작성해주세요.</span>
 
               <div class="input-content">
                 <label for="userEmail">E-mail</label>
-                <input type="text" id="userEmail" name="userEmail" autocomplete="off" />
+                <input type="text" id="userEmail" name="userEmail" autocomplete="off" required />
               </div class="input-content">
               <span class="signUp-msg" id="emailMsg">메일을 받을 수 있는 이메일을 입력해주세요.</span>
 
               <div class="input-content">
                 <label for="userTel">전화번호</label>
-                <input type="text" id="userTel" name="userTel" autocomplete="off" />
+                <input type="text" id="userTel" name="userTel" autocomplete="off" required />
               </div class="input-content">
               <span class="signUp-msg" id="telMsg">전화번호를 입력해주세요.(- 제외)</span>
 
@@ -92,18 +90,18 @@ uri="http://www.springframework.org/security/tags" %>
               </div>
               <div class="input-content">
                 <label for="sample4_detailAddress">상세 주소</label>
-                <input type="text" id="sample4_detailAddress" name="userAddress" autocomplete="off">
+                <input type="text" id="sample4_detailAddress" name="userAddress" autocomplete="off" required>
               </div>
               
 
               <div class="input-content">
                 <div class="input-title">성별</div>
                 <label for="male">남성</label>
-                <input type="radio" name="userGender" id="male" />
+                <input type="radio" name="userGender" id="male" value="male"/>
                 <label for="female">여성</label>
-                <input type="radio" name="userGender" id="female" />
+                <input type="radio" name="userGender" id="female" value="female"/>
                 <label for="noSelect">공개 안 함</label>
-                <input type="radio" name="userGender" id="noSelect" />
+                <input type="radio" name="userGender" id="noSelect" value="noSelect"/>
               </div class="input-content">
               <span class="signUp-msg" id="genderMsg">성별을 선택해주세요.</span>
 
@@ -128,11 +126,14 @@ uri="http://www.springframework.org/security/tags" %>
 
 
               <button type="submit" class="submit-btn">회원 가입</button>
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
             </form>
           </div>
         </div>
       </div>
     </main>
+
+    <%@ include file="../views/common/footer.jsp" %>
 
     <!-- jQuery 라이브러리 추가 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

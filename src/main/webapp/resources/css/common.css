@@ -152,3 +152,36 @@ header {
   border: none;
   border-radius: 15px;
 }
+
+/* footer */
+footer {
+  height: 200px;
+}
+
+/* footer 스타일 */
+footer {
+  background: linear-gradient(to top, tomato, white);
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer > p {
+  font-weight: bold;
+}
+
+footer > article > * {
+  font-size: 14px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer span {
+  padding: 0 10px;
+}
