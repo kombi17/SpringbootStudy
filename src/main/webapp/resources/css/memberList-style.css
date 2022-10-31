@@ -1,0 +1,15 @@
+#memberList {
+  font-family: "IBM Plex Sans KR", sans-serif;
+  border: 1px;
+}
+
+.title {
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#goToUserDetailPage {
+  text-decoration: none;
+  color: black;
+}
