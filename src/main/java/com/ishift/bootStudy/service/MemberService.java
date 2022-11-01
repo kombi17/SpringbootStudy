@@ -19,5 +19,9 @@ public interface MemberService {
   // 회원 정보 수정
   int userUpdate(Map<String, Object> paramMap);
   
-  List<Member> selectMemberList();
+  // 회원 전체 조회
+  List<Member> selectMemberList(Map<String, Object> paramMap);
+  
+  // 검색 조건에 일치하는 회원 조회
+  List<Member> searchMemberList();
 }

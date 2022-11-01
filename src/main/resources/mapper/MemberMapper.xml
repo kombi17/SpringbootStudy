@@ -8,19 +8,19 @@
 	<select id="getUserAccount"
 		resultType="com.ishift.bootStudy.model.vo.Member">
 		SELECT
-		  *
+		*
 		FROM
-		  user
+		user
 		WHERE
-		  USER_ID = #{username}
+		USER_ID = #{username}
 	</select>
 
 	<!-- 회원 가입 -->
 	<insert id="signUp"
 		parameterType="com.ishift.bootStudy.model.vo.Member">
-	INSERT INTO
-	   user
-	(
+		INSERT INTO
+		user
+		(
 		USER_ID,
 		USER_PW,
 		USER_NAME,
@@ -33,9 +33,9 @@
 		USER_AUTH,
 		APPEND_DATE,
 		UPDATE_DATE
-	)
-	VALUES
-	(
+		)
+		VALUES
+		(
 		#{userId},
 		#{userPw},
 		#{userName},
@@ -48,75 +48,109 @@
 		#{userAuth},
 		#{appendDate},
 		#{updateDate}
-	);
+		);
 	</insert>
 
 	<!-- 회원 수 조회 -->
 	<select id="countUser" resultType="int">
-		SELECT 
-		  COUNT(*) 
-		FROM 
-		  user
+		SELECT
+		COUNT(*)
+		FROM
+		user
 	</select>
 
 	<!-- 회원 목록 조회 -->
 	<select id="selectAllUser"
 		resultType="com.ishift.bootStudy.model.vo.Member">
-		SELECT 
-		  * 
-        FROM 
-          user
+		SELECT
+		*
+		FROM
+		user
 	</select>
 
 	<!-- 로그인 한 회원 정보 조회 -->
 	<select id="selectLoginUser"
 		resultType="com.ishift.bootStudy.model.vo.Member">
-		SELECT 
-		  * 
-		FROM 
-		  user
-		WHERE 
-		  USER_ID = 
-		      #{userId}
+		SELECT
+		*
+		FROM
+		user
+		WHERE
+		USER_ID =
+		#{userId}
 	</select>
 
 	<!-- 이메일 중복 검사 -->
 	<select id="idDupCheck" resultType="int">
-		SELECT 
-		  COUNT(*) 
-		FROM 
-		  user
-		WHERE 
-		  USER_ID = 
-		      #{inputId}
+		SELECT
+		COUNT(*)
+		FROM
+		user
+		WHERE
+		USER_ID =
+		#{inputId}
 	</select>
 
 	<update id="userUpdate">
-		UPDATE 
-		  user 
-		SET 
-		  USER_NICKNAME = 
-		      #{updateUserNickname}, 
-		  USER_EMAIL = 
-		      #{updateUserEmail},
-		  USER_TEL = 
-		      #{updateUserTel}, 
-		  USER_ADDRESS = 
-		      #{userAddress}, 
-		  USER_HOBBY = 
-		      #{userHobby},
-		  UPDATE_DATE = 
-		      #{updateDate}
-		WHERE 
-	      USER_NO = 
-		      #{userNo}
+		UPDATE
+		user
+		SET
+		USER_NICKNAME =
+		#{updateUserNickname},
+		USER_EMAIL =
+		#{updateUserEmail},
+		USER_TEL =
+		#{updateUserTel},
+		USER_ADDRESS =
+		#{userAddress},
+		USER_HOBBY =
+		#{userHobby},
+		UPDATE_DATE =
+		#{updateDate}
+		WHERE
+		USER_NO =
+		#{userNo}
 	</update>
-	
-	<select id="selectMemberList" resultType="com.ishift.bootStudy.model.vo.Member">
-	   SELECT 
-	       *
-	   FROM 
-	       user
+
+	<select id="selectMemberList"
+		resultType="com.ishift.bootStudy.model.vo.Member">
+		SELECT
+		  *
+		FROM
+		  user
+		WHERE
+		  USER_AUTH = "USER"
+		<if test='startDate != null and endDate != null and startDate != "" and endDate != ""'>
+		AND
+			DATE_FORMAT(APPEND_DATE, '%Y-%m-%d')
+			     BETWEEN
+			         DATE_FORMAT(#{startDate}, '%Y-%m-%d')
+			     AND 
+			         DATE_FORMAT(#{endDate}, '%Y-%m-%d')
+		</if>
+		<if test="userHobby != null">
+		AND
+		    USER_HOBBY = #{userHobby}
+		</if>
+		<if test="searchGender != null">
+		AND
+		    USER_GENDER = #{searchGender}
+		</if>
+		<if test='searchQuery != null and searchQuery != ""'>
+		AND
+		    <choose>
+			      <when test='searchKey == "id"'>
+			          USER_ID LIKE '%${searchQuery}%'
+			      </when>
+			      <when test='searchKey == "name"'>
+	                  USER_NAME LIKE '%${searchQuery}%'
+	              </when>
+	              <when test='searchKey == "nickname"'>
+	                  USER_NICKNAME LIKE '%${searchQuery}%'
+	              </when>
+		    </choose>
+		</if>
+		ORDER BY USER_NO DESC
 	</select>
 
 </mapper>

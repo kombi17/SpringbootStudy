@@ -100,7 +100,7 @@ uri="http://www.springframework.org/security/tags" %>
                 <input type="radio" name="userGender" id="male" value="male"/>
                 <label for="female">여성</label>
                 <input type="radio" name="userGender" id="female" value="female"/>
-                <label for="noSelect">공개 안 함</label>
+                <label for="noSelect">선택 안 함</label>
                 <input type="radio" name="userGender" id="noSelect" value="noSelect"/>
               </div class="input-content">
               <span class="signUp-msg" id="genderMsg">성별을 선택해주세요.</span>

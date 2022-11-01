@@ -1,6 +1,8 @@
 package com.ishift.bootStudy.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -138,31 +140,31 @@ public class MemberController {
     }
   }
 
-//  /**
-//   * 회원 목록 페이지로 이동
-//   * 
-//   * @param model
-//   * @return
-//   * @throws Exception
-//   */
-//  @GetMapping("/list")
-//  public String selectAllUser(
-//      @RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model,
-//      Principal principal) throws Exception {
-//
-//    try {
-//      Map<String, Object> map = null;
-//
-//      map = memberService.selectAllUser(cp);
-//
-//      model.addAttribute("map", map);
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//    }
-//    return "userList";
-//
-//  }
+  // /**
+  // * 회원 목록 페이지로 이동
+  // *
+  // * @param model
+  // * @return
+  // * @throws Exception
+  // */
+  // @GetMapping("/list")
+  // public String selectAllUser(
+  // @RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model,
+  // Principal principal) throws Exception {
+  //
+  // try {
+  // Map<String, Object> map = null;
+  //
+  // map = memberService.selectAllUser(cp);
+  //
+  // model.addAttribute("map", map);
+  //
+  // } catch (Exception e) {
+  // e.printStackTrace();
+  // }
+  // return "userList";
+  //
+  // }
 
   /**
    * 회원 정보 수정 form으로 이동
@@ -261,10 +263,24 @@ public class MemberController {
     return "memberList";
   }
 
+  
   @ResponseBody
   @GetMapping("/selectMemberList")
-  public List<Member> selectMemberList() {
-    List<Member> memberList = memberService.selectMemberList();
+  public List<Member> selectMemberList(@RequestParam Map<String, Object> paramMap,
+      String[] searchHobby) {
+
+    List<Member> memberList = new ArrayList<Member>();
+    
+    if(paramMap.containsKey("searchHobby")) {
+      
+      String userHobby = String.join(",,", searchHobby);
+      
+      paramMap.put("userHobby", userHobby);
+      
+    }
+
+    memberList = memberService.selectMemberList(paramMap);
+    
     return memberList;
   }
 }

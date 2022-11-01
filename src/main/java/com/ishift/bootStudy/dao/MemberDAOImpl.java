@@ -70,8 +70,12 @@ public class MemberDAOImpl implements MemberDAO {
     return sqlSession.update("memberMapper.userUpdate", paramMap);
   }
 
-  public List<Member> selectMemberList() {
-    return sqlSession.selectList("memberMapper.selectMemberList");
+  public List<Member> selectMemberList(Map<String, Object> paramMap) {
+    return sqlSession.selectList("memberMapper.selectMemberList", paramMap);
+  }
+
+  public List<Member> searchMemberList() {
+    return sqlSession.selectList("memberMapper.searchMemberList");
   }
 
 

@@ -129,8 +129,12 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
     return memberMapper.userUpdate(paramMap);
   }
 
-  public List<Member> selectMemberList() {
-    return memberMapper.selectMemberList();
+  public List<Member> selectMemberList(Map<String, Object> paramMap) {
+    return memberMapper.selectMemberList(paramMap);
+  }
+
+  public List<Member> searchMemberList() {
+    return memberMapper.searchMemberList();
   }
 
 }
