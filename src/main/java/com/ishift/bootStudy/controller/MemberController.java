@@ -271,6 +271,9 @@ public class MemberController {
 
     List<Member> memberList = new ArrayList<Member>();
     
+    // startDate와 endDate를 비교해서 더 우선인 날짜가 앞에 배치되도록 하면 좋을 것 같은데!!! 
+    
+    
     if(paramMap.containsKey("searchHobby")) {
       
       String userHobby = String.join(",,", searchHobby);

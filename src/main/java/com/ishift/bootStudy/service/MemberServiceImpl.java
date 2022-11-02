@@ -129,12 +129,12 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
     return memberMapper.userUpdate(paramMap);
   }
 
+  /**
+   * 회원 전체 목록 조회 (검색 포함)
+   */
   public List<Member> selectMemberList(Map<String, Object> paramMap) {
     return memberMapper.selectMemberList(paramMap);
   }
 
-  public List<Member> searchMemberList() {
-    return memberMapper.searchMemberList();
-  }
 
 }
