@@ -86,7 +86,12 @@ function selectMemberList() {
         {
           data: "userId",
           render: function (data, type, row) {
-            data = "<a href=/user/detail/" + data + ">" + data + "</a>";
+            data =
+              "<a class='userIdLink' href=/user/detail/" +
+              data +
+              ">" +
+              data +
+              "</a>";
             return data;
           },
         },

@@ -77,3 +77,10 @@
   border: none;
   border-radius: 15px;
 }
+
+/* userId link(a태그) */
+.userIdLink {
+  color: tomato;
+  font-family: "Silkscreen", "Poor Story";
+  text-decoration: none;
+}

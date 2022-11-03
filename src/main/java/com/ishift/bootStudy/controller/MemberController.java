@@ -277,16 +277,19 @@ public class MemberController {
     if (!paramMap.get("startDate").equals("") && !paramMap.get("endDate").equals("")) {
       // startDate와 endDate가 빈 칸이 아닐 경우
 
+      // object를 String으로 변환
       String startDate = (String) paramMap.get("startDate");
       String endDate = (String) paramMap.get("endDate");
+      
+      // 날짜 비교용 변수 선언
       int result = 0;
 
       // formatter
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+      // String으로 변환한 날짜를 비교를 위해 LocalDate로 변환
       LocalDate parseStartDate = LocalDate.parse(startDate, formatter);
       LocalDate parseEndDate = LocalDate.parse(endDate, formatter);
-
 
       // 날짜 비교
       result = parseStartDate.compareTo(parseEndDate); // startDate가 이전일 경우 -1, 같을 경우 0, 이후일 경우 1
@@ -294,10 +297,11 @@ public class MemberController {
       if (result > 0) {
         // startDate이 endDate보다 이후인 경우
 
-        // 값을 바꿔줌
+        // LocalDate를 String으로 변환한 후 이전 날짜를 startDate에 대입
         startDate = parseEndDate.format(formatter);
         endDate = parseStartDate.format(formatter);
 
+        // paramMap에 넣기
         paramMap.put("startDate", startDate);
         paramMap.put("endDate", endDate);
       }
