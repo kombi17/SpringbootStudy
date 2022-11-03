@@ -139,6 +139,13 @@
 		<if test='searchQuery != null and searchQuery != ""'>
 		AND
 		    <choose>
+		          <when test='searchKey == ""'>
+		              (USER_ID LIKE '%${searchQuery}%' 
+		              OR 
+		              USER_NAME LIKE '%${searchQuery}%' 
+		              OR 
+		              USER_NICKNAME LIKE '%${searchQuery}%')
+		          </when>
 			      <when test='searchKey == "id"'>
 			          USER_ID LIKE '%${searchQuery}%'
 			      </when>

@@ -43,6 +43,7 @@
                         <!-- 기간 -->
                         <!-- datepicker 사용 -->
                         <div class="search-detail" id="dateSearch">
+                          <span>기간 </span>
                           <input type="text" id="startDate" name="startDate" />
                           <span> ~ </span>
                           <input type="text" id="endDate" name="endDate" />
@@ -50,6 +51,7 @@
 
                         <!-- 성별 -->
                         <div class="search-detail" id="genderSearch">
+                          <span>성별 </span>
                           <label for="male">남성</label>
                           <input type="radio" name="searchGender" id="male" value="male" />
                           <label for="female">여성</label>
@@ -59,6 +61,7 @@
                         </div>
                         <!-- 취미 -->
                         <div class="search-detail" id="hobbySearch">
+                          <span>취미 </span>
                           <label for="book">독서</label>
                           <input type="checkbox" name="searchHobby" id="book" value="book" />
 
@@ -76,6 +79,7 @@
                         </div>
                         <!-- 아이디, 이름, 닉네임 & 검색어 -->
                         <div class="search-detail" id="querySearch">
+                          <span>검색 </span>
                           <select name="searchKey" id="searchKey">
                             <option value="" selected>=== 선택 ===</option>
                             <option value="id">아이디</option>

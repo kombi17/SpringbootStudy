@@ -1,6 +1,8 @@
 package com.ishift.bootStudy.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -263,27 +265,53 @@ public class MemberController {
     return "memberList";
   }
 
-  
+
   @ResponseBody
   @GetMapping("/selectMemberList")
   public List<Member> selectMemberList(@RequestParam Map<String, Object> paramMap,
       String[] searchHobby) {
 
     List<Member> memberList = new ArrayList<Member>();
-    
-    // startDate와 endDate를 비교해서 더 우선인 날짜가 앞에 배치되도록 하면 좋을 것 같은데!!! 
-    
-    
-    if(paramMap.containsKey("searchHobby")) {
-      
+
+    // startDate와 endDate를 비교해서 더 우선인 날짜가 앞에 배치되도록 하면 좋을 것 같은데!!!
+    if (!paramMap.get("startDate").equals("") && !paramMap.get("endDate").equals("")) {
+      // startDate와 endDate가 빈 칸이 아닐 경우
+
+      String startDate = (String) paramMap.get("startDate");
+      String endDate = (String) paramMap.get("endDate");
+      int result = 0;
+
+      // formatter
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+      LocalDate parseStartDate = LocalDate.parse(startDate, formatter);
+      LocalDate parseEndDate = LocalDate.parse(endDate, formatter);
+
+
+      // 날짜 비교
+      result = parseStartDate.compareTo(parseEndDate); // startDate가 이전일 경우 -1, 같을 경우 0, 이후일 경우 1
+
+      if (result > 0) {
+        // startDate이 endDate보다 이후인 경우
+
+        // 값을 바꿔줌
+        startDate = parseEndDate.format(formatter);
+        endDate = parseStartDate.format(formatter);
+
+        paramMap.put("startDate", startDate);
+        paramMap.put("endDate", endDate);
+      }
+    }
+
+    if (paramMap.containsKey("searchHobby")) {
+
       String userHobby = String.join(",,", searchHobby);
-      
+
       paramMap.put("userHobby", userHobby);
-      
     }
 
     memberList = memberService.selectMemberList(paramMap);
-    
+
     return memberList;
   }
 }

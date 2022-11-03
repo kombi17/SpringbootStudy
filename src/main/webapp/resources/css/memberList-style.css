@@ -12,7 +12,8 @@
   display: block;
   margin: 70px 0;
   margin-top: 120px;
-  text-align: center;
+  text-align: left;
+  padding-left: 220px;
 }
 
 .title {
@@ -34,6 +35,11 @@
   margin: 20px 0;
 }
 
+.search-detail span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .search-detail input {
   font-size: 17px;
 
@@ -52,7 +58,10 @@
 /* 검색 버튼 */
 #searchBtnArea {
   margin: 30px 0;
-  text-align: center;
+
+  padding-left: 150px;
+
+  text-align: left;
 }
 
 #searchSubmit {
