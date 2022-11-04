@@ -142,31 +142,6 @@ public class MemberController {
     }
   }
 
-  // /**
-  // * 회원 목록 페이지로 이동
-  // *
-  // * @param model
-  // * @return
-  // * @throws Exception
-  // */
-  // @GetMapping("/list")
-  // public String selectAllUser(
-  // @RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model,
-  // Principal principal) throws Exception {
-  //
-  // try {
-  // Map<String, Object> map = null;
-  //
-  // map = memberService.selectAllUser(cp);
-  //
-  // model.addAttribute("map", map);
-  //
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // }
-  // return "userList";
-  //
-  // }
 
   /**
    * 회원 정보 수정 form으로 이동
@@ -280,7 +255,7 @@ public class MemberController {
       // object를 String으로 변환
       String startDate = (String) paramMap.get("startDate");
       String endDate = (String) paramMap.get("endDate");
-      
+
       // 날짜 비교용 변수 선언
       int result = 0;
 
@@ -318,4 +293,41 @@ public class MemberController {
 
     return memberList;
   }
+
+  /**
+   * 회원 탈퇴로 이동
+   * 
+   * @return
+   */
+  @GetMapping("/memberSecession")
+  public String secessionForm(Principal principal, Model model) {
+
+    String loginUserId = principal.getName();
+
+    Member loginUser = memberService.selectLoginUser(loginUserId);
+
+    model.addAttribute("loginuser", loginUser);
+
+    return "memberSecession";
+  }
+  
+  @PostMapping("/memberSecession")
+  public String memberSecession(Principal principal, String userPw, Model model) {
+    String loginUserPw = memberService.selectLoginUser(principal.getName()).getUserPw(); 
+    
+    if(userPw.equals(loginUserPw)) {
+      // 입력한 비밀번호와 로그인 한 유저의 비밀번호가 같은 경우
+      
+      // 회원 탈퇴 (서비스 구현) 
+      
+      
+      return "redirect:/";
+          
+    } else {
+      model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
+      return "redirect:/user/memberSecession";
+    }
+  }
+
 }
+
