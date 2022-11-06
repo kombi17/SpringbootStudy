@@ -136,5 +136,12 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
     return memberMapper.selectMemberList(paramMap);
   }
 
+  @Override
+  public int memberSecession(String userPw) {
+    return memberMapper.memberSecession(userPw);
+  }
+
+  
+
 
 }

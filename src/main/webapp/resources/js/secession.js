@@ -9,7 +9,7 @@ function secessionValidate() {
     // 체크박스 체크 O
     if (confirm("정말 탈퇴하시겠습니까?")) {
       // jsp 파일로 넘어가면 안 되고 uri 로 넘어가야 함!! getmapping? ajax?
-      location.href = "/views/checkPw.jsp";
+      location.replace("http://localhost:8080/user/checkPw");
 
       return true;
     } else {

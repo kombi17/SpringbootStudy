@@ -159,5 +159,16 @@
 		</if>
 		ORDER BY USER_NO DESC
 	</select>
+	
+	<update id="memberSecession" resultType="int">
+		UPDATE 
+			user 
+		SET 
+			USER_AUTH = 
+				'SECESSION_USER' 
+		WHERE 
+			USER_PW = 
+				#{userPw}
+	</update>
 
 </mapper>

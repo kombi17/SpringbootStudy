@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -310,6 +309,11 @@ public class MemberController {
 
     return "memberSecession";
   }
+
+  @GetMapping("/checkPw")
+  public String checkPw(){
+    return "checkPw";
+  }
   
   @PostMapping("/memberSecession")
   public String memberSecession(Principal principal, String userPw, Model model) {
@@ -319,7 +323,13 @@ public class MemberController {
       // 입력한 비밀번호와 로그인 한 유저의 비밀번호가 같은 경우
       
       // 회원 탈퇴 (서비스 구현) 
-      
+      int result = memberService.memberSecession(userPw);
+
+      if(result > 0){
+        model.addAttribute("message", "회원 탈퇴에 성공했습니다. 다시 만날 수 있길 바랍니다.");
+      } else{
+        model.addAttribute("message", "회원 탈퇴에 실패했습니다. 관리자에게 문의해주세요.");
+      }
       
       return "redirect:/";
           

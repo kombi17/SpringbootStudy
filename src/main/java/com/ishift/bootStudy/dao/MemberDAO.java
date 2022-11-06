@@ -31,5 +31,8 @@ public interface MemberDAO {
   
   // 회원 전체 조회 (검색 포함)
   List<Member> selectMemberList(Map<String, Object> paramMap);
+
+  // 회원 탈퇴
+  int memberSecession(String userPw);
   
 }
