@@ -2,7 +2,8 @@
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fn"
 uri="http://java.sun.com/jsp/jstl/functions"%> <%@ taglib prefix="sec"
-uri="http://www.springframework.org/security/tags" %>
+uri="http://www.springframework.org/security/tags" %> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +47,7 @@ uri="http://www.springframework.org/security/tags" %>
               <div class="item columnTitle">이메일</div>
               <div class="item columnTitle">전화번호</div>
               <div class="item columnTitle">주소</div>
-              <div class="item columnTitle">권한</div>
+              <!-- <div class="item columnTitle">권한</div> -->
               <div class="item columnTitle">가입 날짜</div>
               <div class="item columnTitle">수정 날짜</div>
               <!-- 내용 -->
@@ -65,11 +66,15 @@ uri="http://www.springframework.org/security/tags" %>
                   ${fn:replace(user.userHobby, ',,', ', ')}
                 </div>
                 <div class="item">${user.userEmail}</div>
-                <div class="item">${user.userTel}</div>
+                <div class="item">
+                  ${fn:substring(user.userTel, 0,
+                  3)}-${fn:substring(user.userTel, 3,
+                  7)}-${fn:substring(user.userTel, 7, 11)}
+                </div>
                 <div class="item" style="justify-content: start">
                   ${fn:replace(user.userAddress, ',,', '&nbsp;')}
                 </div>
-                <div class="item">${user.userAuth}</div>
+                <!-- <div class="item">${user.userAuth}</div> -->
                 <div class="item">${user.appendDate}</div>
                 <div class="item">${user.updateDate}</div>
               </c:forEach>

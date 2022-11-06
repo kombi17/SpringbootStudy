@@ -59,6 +59,9 @@ dependencies {
 	
 	// jstl 사용을 위한 dependencies
 	implementation 'javax.servlet:jstl'
+	// jQuery 사용을 위한 dependencies
+    implementation 'org.webjars.bower:jquery:3.6.1'
+	
 	
 	// 스프링 시큐리티를 위한 dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-security'
