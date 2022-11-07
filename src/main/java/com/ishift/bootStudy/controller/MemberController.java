@@ -49,7 +49,7 @@ public class MemberController {
     if (authentication == null
         || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())) {
       // 로그인 한 사용자가 없는 경우
-      return "signUp";
+      return "member/signUp";
     } else {
       // 로그인 한 사용자가 있는 경우
       return "redirect:/";
@@ -131,10 +131,10 @@ public class MemberController {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
 
-        return "loginPage";
+        return "member/loginPage";
       } else {
         // 로그인 성공의 경우
-        return "loginPage";
+        return "member/loginPage";
       }
 
     } else {
@@ -165,7 +165,7 @@ public class MemberController {
       if (userId.equals(loginId)) {
         // 로그인 한 유저와 클릭한 유저가 같을 경우
         model.addAttribute("loginuser", loginUser);
-        return "userDetail";
+        return "member/userDetail";
       } else {
         ra.addFlashAttribute("message", loginId + " 님의 정보만 수정이 가능합니다.");
       }
@@ -238,7 +238,7 @@ public class MemberController {
 
   @GetMapping("/memberList")
   public String memberList() {
-    return "memberList";
+    return "member/memberList";
   }
 
 
@@ -309,7 +309,7 @@ public class MemberController {
 
     model.addAttribute("loginuser", loginUser);
 
-    return "memberSecession";
+    return "member/memberSecession";
   }
 
   @GetMapping("/checkPw")

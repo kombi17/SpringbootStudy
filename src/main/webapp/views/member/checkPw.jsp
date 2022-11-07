@@ -50,7 +50,7 @@
                             </div>
                     </main>
 
-                    <%@ include file="../views/common/footer.jsp" %>
+                    <%@ include file="/views/common/footer.jsp" %>
 
                         <!-- js -->
                         <script src="/resources/js/secession.js" />

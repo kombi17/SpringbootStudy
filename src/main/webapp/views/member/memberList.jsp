@@ -10,8 +10,8 @@
           <meta charset="UTF-8" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link rel="stylesheet" href="../resources/css/common.css" />
-          <link rel="stylesheet" href="../resources/css/memberList-style.css" />
+          <link rel="stylesheet" href="/resources/css/common.css" />
+          <link rel="stylesheet" href="/resources/css/memberList-style.css" />
           <script src="https://kit.fontawesome.com/245c493145.js" crossorigin="anonymous"></script>
 
           <!-- jQuery -->
@@ -120,10 +120,10 @@
           </main>
 
           <!-- footer -->
-          <%@ include file="../views/common/footer.jsp" %>
+          <%@ include file="/views/common/footer.jsp" %>
 
             <!-- memberList.js -->
-            <script src="..\resources\js\memberList.js"></script>
+            <script src="\resources\js\memberList.js"></script>
 
         </body>
 

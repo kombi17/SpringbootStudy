@@ -16,6 +16,9 @@
             <a href="/user/memberList"><i class="fa-regular fa-rectangle-list"></i> User List</a>
           </div>
           <div class="sidebar-menu">
+            <a href="/board/boardList"><i class="fa-regular fa-rectangle-list"></i> 게시판</a>
+          </div>
+          <div class="sidebar-menu">
             <a href="/user/memberSecession"><i class="fa-regular fa-rectangle-list"></i> 회원 탈퇴</a>
           </div>
           <div class="sidebar-menu">
