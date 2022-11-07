@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties.AssertingParty.Verification.Credential;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -311,32 +313,54 @@ public class MemberController {
   }
 
   @GetMapping("/checkPw")
-  public String checkPw(){
+  public String checkPw() {
     return "checkPw";
   }
-  
-  @PostMapping("/memberSecession")
-  public String memberSecession(Principal principal, String userPw, Model model) {
-    String loginUserPw = memberService.selectLoginUser(principal.getName()).getUserPw(); 
-    
-    if(userPw.equals(loginUserPw)) {
-      // 입력한 비밀번호와 로그인 한 유저의 비밀번호가 같은 경우
-      
-      // 회원 탈퇴 (서비스 구현) 
-      int result = memberService.memberSecession(userPw);
 
-      if(result > 0){
-        model.addAttribute("message", "회원 탈퇴에 성공했습니다. 다시 만날 수 있길 바랍니다.");
-      } else{
-        model.addAttribute("message", "회원 탈퇴에 실패했습니다. 관리자에게 문의해주세요.");
+  @PostMapping("/memberSecession")
+  public String memberSecession(Principal principal, String userPw, RedirectAttributes ra) {
+
+    // 로그인한 회원의 비밀번호
+    String loginUserPw = memberService.selectLoginUser(principal.getName()).getUserPw();
+    
+    // 로그인 한 회원의 회원 번호
+    int userNo = memberService.selectLoginUser(principal.getName()).getUserNo();
+
+    // bcrypt를 이용한 비밀번호 암호화
+    BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+
+    String msg = "";
+    String path = "";
+
+    if (bcrypt.matches(userPw, loginUserPw)) {
+      // 입력한 비밀번호와 로그인 한 유저의 비밀번호가 같은 경우
+
+      // 회원 탈퇴 (서비스 구현)
+      int result = memberService.memberSecession(userNo);
+
+      if (result > 0) {
+        msg = "회원 탈퇴에 성공했습니다. 다시 만날 수 있길 바랍니다.";
+        path = "redirect:/user/loginForm";
+        // 탈퇴 회원은 접근 못 하도록 (세션 종료 및 로그인 안 되도록)
+        SecurityContextHolder.clearContext();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        
+
+      } else {
+        msg = "회원 탈퇴에 실패했습니다. 관리자에게 문의해주세요.";
+        path = "redirect:/user/memberSecession";
       }
-      
-      return "redirect:/";
-          
+
     } else {
-      model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
-      return "redirect:/user/memberSecession";
+      System.out.println("비밀번호 불일치");
+      msg = "비밀번호가 일치하지 않습니다.";
+      path = "redirect:/user/memberSecession";
     }
+
+
+    ra.addFlashAttribute("message", msg);
+    return path;
+
   }
 
 }

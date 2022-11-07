@@ -137,11 +137,10 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
   }
 
   @Override
-  public int memberSecession(String userPw) {
-    return memberMapper.memberSecession(userPw);
+  public int memberSecession(int userNo) {
+    return memberMapper.memberSecession(userNo);
   }
 
-  
 
 
 }

@@ -76,8 +76,8 @@ public class MemberDAOImpl implements MemberDAO {
   }
 
   @Override
-  public int memberSecession(String userPw) {
-    return sqlSession.update("memberMapper.memberSecession", userPw);
+  public int memberSecession(int userNo) {
+    return sqlSession.update("memberMapper.memberSecession", userNo);
   }
 
 

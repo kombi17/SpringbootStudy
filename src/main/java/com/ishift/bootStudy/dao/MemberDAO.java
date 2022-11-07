@@ -33,6 +33,6 @@ public interface MemberDAO {
   List<Member> selectMemberList(Map<String, Object> paramMap);
 
   // 회원 탈퇴
-  int memberSecession(String userPw);
+  int memberSecession(int userNo);
   
 }

@@ -8,108 +8,124 @@
 	<select id="getUserAccount"
 		resultType="com.ishift.bootStudy.model.vo.Member">
 		SELECT
-		*
+		  *
 		FROM
-		user
+		  user
 		WHERE
-		USER_ID = #{username}
+		  USER_ID 
+	          = #{username}
+		AND 
+		  USER_AUTH 
+	          = 'USER'
 	</select>
 
 	<!-- 회원 가입 -->
 	<insert id="signUp"
 		parameterType="com.ishift.bootStudy.model.vo.Member">
 		INSERT INTO
-		user
+		  user
 		(
-		USER_ID,
-		USER_PW,
-		USER_NAME,
-		USER_NICKNAME,
-		USER_GENDER,
-		USER_HOBBY,
-		USER_EMAIL,
-		USER_TEL,
-		USER_ADDRESS,
-		USER_AUTH,
-		APPEND_DATE,
-		UPDATE_DATE
+			USER_ID,
+			USER_PW,
+			USER_NAME,
+			USER_NICKNAME,
+			USER_GENDER,
+			USER_HOBBY,
+			USER_EMAIL,
+			USER_TEL,
+			USER_ADDRESS,
+			USER_AUTH,
+			APPEND_DATE,
+			UPDATE_DATE
 		)
 		VALUES
 		(
-		#{userId},
-		#{userPw},
-		#{userName},
-		#{userNickname},
-		#{userGender},
-		#{userHobby},
-		#{userEmail},
-		#{userTel},
-		#{userAddress},
-		#{userAuth},
-		#{appendDate},
-		#{updateDate}
+			#{userId},
+			#{userPw},
+			#{userName},
+			#{userNickname},
+			#{userGender},
+			#{userHobby},
+			#{userEmail},
+			#{userTel},
+			#{userAddress},
+			#{userAuth},
+			#{appendDate},
+			#{updateDate}
 		);
 	</insert>
 
 	<!-- 회원 수 조회 -->
 	<select id="countUser" resultType="int">
 		SELECT
-		COUNT(*)
+		  COUNT(*)
 		FROM
-		user
+		  user
+	    WHERE 
+	      USER_AUTH = 
+	        'USER'
 	</select>
 
 	<!-- 회원 목록 조회 -->
 	<select id="selectAllUser"
 		resultType="com.ishift.bootStudy.model.vo.Member">
 		SELECT
-		*
+		  *
 		FROM
-		user
+		  user
+	    WHERE
+	      USER_AUTH = 
+	        'USER'
 	</select>
 
 	<!-- 로그인 한 회원 정보 조회 -->
 	<select id="selectLoginUser"
 		resultType="com.ishift.bootStudy.model.vo.Member">
 		SELECT
-		*
+		  *
 		FROM
-		user
+		  user
 		WHERE
-		USER_ID =
-		#{userId}
+		  USER_ID =
+		      #{userId}
+		AND
+          USER_AUTH = 
+            'USER'
 	</select>
 
-	<!-- 이메일 중복 검사 -->
+	<!-- 아이디 중복 검사 -->
 	<select id="idDupCheck" resultType="int">
 		SELECT
-		COUNT(*)
+		  COUNT(*)
 		FROM
-		user
+		  user
 		WHERE
-		USER_ID =
-		#{inputId}
+		  USER_ID =
+		      #{inputId}
+	    AND
+	       USER_AUTH = 
+	           'USER'
 	</select>
 
 	<update id="userUpdate">
 		UPDATE
-		user
+		  user
 		SET
-		USER_NICKNAME =
-		#{updateUserNickname},
-		USER_EMAIL =
-		#{updateUserEmail},
-		USER_TEL =
-		#{updateUserTel},
-		USER_ADDRESS =
-		#{userAddress},
-		USER_HOBBY =
-		#{userHobby},
-		UPDATE_DATE =
-		#{updateDate}
+			USER_NICKNAME =
+			     #{updateUserNickname},
+			USER_EMAIL =
+			     #{updateUserEmail},
+			USER_TEL =
+			     #{updateUserTel},
+			USER_ADDRESS =
+			     #{userAddress},
+			USER_HOBBY =
+			     #{userHobby},
+			UPDATE_DATE =
+			     #{updateDate}
 		WHERE
-		USER_NO =
-		#{userNo}
+		    USER_NO =
+		         #{userNo}
 	</update>
 
 	<select id="selectMemberList"
@@ -160,15 +176,15 @@
 		ORDER BY USER_NO DESC
 	</select>
 	
-	<update id="memberSecession" resultType="int">
+	<update id="memberSecession">
 		UPDATE 
 			user 
 		SET 
 			USER_AUTH = 
 				'SECESSION_USER' 
 		WHERE 
-			USER_PW = 
-				#{userPw}
+			USER_NO = 
+				#{userNo}
 	</update>
 
 </mapper>
