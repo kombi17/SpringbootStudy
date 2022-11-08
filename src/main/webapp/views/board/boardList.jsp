@@ -48,7 +48,7 @@
                                                     <tr>
                                                         <th class="title">No</th>
                                                         <th class="title">제목</th>
-                                                        <th class="title">아이디</th>
+                                                        <th class="title">아이디 (닉네임)</th>
                                                         <th class="title">닉네임</th>
                                                         <th class="title">작성 날짜</th>
                                                         <th class="title">조회수</th>

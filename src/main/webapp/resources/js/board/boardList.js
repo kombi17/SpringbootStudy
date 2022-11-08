@@ -15,9 +15,21 @@ function selectBoardList() {
         },
         {
           data: "boardTitle",
+          render: function (data, type, row) {
+            data =
+              "<a class='boardTitle' href=/board/boardDetail/" +
+              row.boardNo +
+              ">" +
+              data +
+              "</a>";
+            return data;
+          },
         },
         {
           data: "userId",
+          render: function (data, type, row) {
+            return row.userId + " (" + row.userNickname + ")";
+          },
         },
         {
           data: "userNickname",
@@ -32,7 +44,10 @@ function selectBoardList() {
           data: "userNo",
         },
       ],
-      //   columnDefs: [{ targets: 7, visible: false }],
+      columnDefs: [
+        { targets: [0, 3, 6], visible: false },
+        { targets: 1, width: 400 },
+      ],
       scrollX: true,
       displayLength: 10,
       lengthChange: false,

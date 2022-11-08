@@ -5,10 +5,20 @@
 <mapper namespace="boardMapper">
 
     <select id="selectBoardList" resultType="com.ishift.bootStudy.board.model.vo.BoardList">
-        SELECT
-            *
-        FROM
-            board
+		SELECT 
+		  BOARD_NO, 
+	      BOARD_TITLE, 
+	      USER_ID, 
+	      USER_NICKNAME, 
+	      CREATE_DATE, 
+	      READ_COUNT, 
+	      USER_NO 
+		FROM 
+		  board
+		JOIN 
+		  user 
+		      USING
+		          (USER_NO)
     </select>
 
 
