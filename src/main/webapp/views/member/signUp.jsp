@@ -34,7 +34,7 @@
                       <form action="/user/signUp" method="post" onsubmit="return signUpValidate()">
                         <div class="input-content">
                           <label for="userId">ID</label>
-                          <input type="text" id="userId" name="userId" autocomplete="off" required />
+                          <input type="text" id="userId" name="userId" autocomplete="off" required autofocus />
                         </div>
                         <span class="signUp-msg" id="idMsg">영어, 숫자 6-20자 사이로 작성해주세요.</span>
 

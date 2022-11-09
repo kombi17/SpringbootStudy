@@ -37,7 +37,8 @@
 											<span id="exception">${exception}</span>
 											<form action="/user/login" method="post" onsubmit="return inputValidate()">
 												<div class="input-content"> <label for="username">ID</label> <input
-														type="text" id="username" name="username" autocomplete="off" />
+														type="text" id="username" name="username" autocomplete="off"
+														autofocus />
 												</div>
 												<div class="input-content"> <label for="password">PW</label> <input
 														type="password" id="password" name="password" /> </div>

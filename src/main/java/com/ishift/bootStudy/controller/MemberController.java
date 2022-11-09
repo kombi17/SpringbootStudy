@@ -314,7 +314,7 @@ public class MemberController {
 
   @GetMapping("/checkPw")
   public String checkPw() {
-    return "checkPw";
+    return "member/checkPw";
   }
 
   @PostMapping("/memberSecession")

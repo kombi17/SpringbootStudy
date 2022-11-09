@@ -19,7 +19,62 @@
 		  user 
 		      USING
 		          (USER_NO)
+        WHERE BOARD_STATEMENT = 'N'
+		<if test='createDate != null and createDate != ""'>
+        AND
+          DATE_FORMAT(CREATE_DATE, '%Y-%m-%d')
+            BETWEEN 
+                DATE_FORMAT(#{createDate}, '%Y-%m-%d')
+            AND
+                DATE_FORMAT(#{createDate}, '%Y-%m-%d')
+        </if>
+        <if test='searchQuery != null and searchQuery != ""'>
+        AND
+          <choose>
+            <when test='searchKey == ""'>
+			    (USER_ID LIKE '%${searchQuery}%'
+			    OR
+			    USER_NICKNAME LIKE '%${searchQuery}%'
+			    OR
+			    BOARD_TITLE LIKE '%${searchQuery}%'
+			    )
+            </when>
+            <when test='searchKey == "id"'>
+                USER_ID LIKE '%${searchQuery}%'
+            </when>
+            <when test='searchKey == "nickname"'>
+                USER_NICKNAME LIKE '%${searchQuery}%'
+            </when>
+            <when test='searchKey == "title"'>
+                BOARD_TITLE LIKE '%${searchQuery}%'
+            </when>
+          </choose>
+        </if>
     </select>
+    
+    <select id="selectBoardDetail" resultType="com.ishift.bootStudy.board.model.vo.BoardDetail">
+        SELECT
+            * 
+        FROM 
+            board 
+        LEFT JOIN 
+            board_img 
+                USING(BOARD_NO) 
+        WHERE 
+            BOARD_NO = 
+                #{boardNo}
+    </select>
+    
+    <update id="deleteBoardDetail">
+        UPDATE 
+            board 
+        SET 
+            BOARD_STATEMENT = 
+                'Y' 
+        WHERE 
+            BOARD_NO = 
+                #{boardNo}
+    </update>
 
 
 </mapper>

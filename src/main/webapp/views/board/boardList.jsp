@@ -12,6 +12,7 @@
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
                     <link rel="stylesheet" href="/resources/css/common.css" />
+                    <link rel="stylesheet" href="/resources/css/board/boardList-style.css">
 
                     <script src="https://kit.fontawesome.com/245c493145.js" crossorigin="anonymous"></script>
 
@@ -40,8 +41,34 @@
                                     <!-- main-content -->
                                     <div id="list-content">
                                         <!-- search Area -->
+                                        <div id="searchArea">
+                                            <form id="searchContent" autocomplete="off">
+                                                <!-- 기간 -->
+                                                <!-- datepicker 사용 -->
+                                                <div class="search-detail" id="dateSearch">
+                                                    <span>기간 </span>
+                                                    <input type="text" id="createDate" name="createDate" />
+                                                </div>
 
+                                                <!-- 제목, 아이디, 닉네임 & 검색어 -->
+                                                <div class="search-detail" id="querySearch">
+                                                    <span>검색 </span>
+                                                    <select name="searchKey" id="searchKey">
+                                                        <option value="" selected>=== 선택 ===</option>
+                                                        <option value="title">제목</option>
+                                                        <option value="id">아이디</option>
+                                                        <option value="nickname">닉네임</option>
+                                                    </select>
+                                                    <input type="text" name="searchQuery" id="searchQuery" />
+                                                </div>
+                                                <div class="search-detail" id="searchBtnArea">
+                                                    <button type="button" id="searchSubmit"
+                                                        onclick="selectBoardList()">검색</button>
+                                                </div>
+                                            </form>
+                                        </div>
 
+                                        <!-- 리스트 -->
                                         <div class="list-container">
                                             <table id="boardList" class="display nowrap">
                                                 <thead>
@@ -56,6 +83,10 @@
                                                     </tr>
                                                 </thead>
                                             </table>
+                                        </div>
+                                        <!-- 버튼 영역 (글쓰기 버튼) -->
+                                        <div class="button-area">
+                                            <button type="button" id="goToWriteForm"> 글쓰기 </button>
                                         </div>
                                     </div>
                             </div>
