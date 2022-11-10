@@ -73,7 +73,9 @@ public class BoardController {
   }
 
   @PostMapping("/boardWrite")
-  public String boardWrite(@RequestParam Map<String, Object> paramMap, Principal principal,
+  public String boardWrite(
+      @RequestParam Map<String, Object> paramMap, 
+      Principal principal,
       RedirectAttributes ra) {
 
     int userNo = memberService.selectLoginUser(principal.getName()).getUserNo();
@@ -81,18 +83,21 @@ public class BoardController {
     paramMap.put("userNo", userNo);
 
     // 제목, 내용 받아서 DB에 저장, 이미지도 저장...
-    int boardNo = 0;
+    int result = 0;
     try {
 
-      boardNo = boardService.insertBoard(paramMap);
+      result = boardService.insertBoard(paramMap);
+      if(result>0) {
+        ra.addFlashAttribute("message", "게시글이 작성되었습니다.");
+      } else {
+        ra.addFlashAttribute("message", "게시글 작성 실패");
+      }
 
-//      ra.addFlashAttribute("message", "게시글이 작성되었습니다.");
-//      ra.addFlashAttribute("message", "게시글 작성 실패!");
     } catch (Exception e) {
       e.printStackTrace();
     }
 
-    return "board/boardDetail/" + boardNo;
+    return "redirect:/board/boardList";
   }
 
 
@@ -110,7 +115,7 @@ public class BoardController {
     } else {
       msg = "게시글 삭제 실패";
       // 어디로 갈 것인가?
-      path = "board/boardDetail" + boardNo;
+      path = "redirect:/board/boardDetail/" + boardNo;
     }
 
     ra.addAttribute("message", msg);

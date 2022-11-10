@@ -50,6 +50,7 @@
             </when>
           </choose>
         </if>
+        ORDER BY BOARD_NO DESC
     </select>
     
     <select id="selectBoardDetail" resultType="com.ishift.bootStudy.board.model.vo.BoardDetail">
@@ -66,9 +67,10 @@
         WHERE 
             BOARD_NO = 
                 #{boardNo}
+        
     </select>
     
-    <update id="deleteBoardDetail" useGeneratedKeys="true" keyProperty="BOARD_NO">
+    <update id="deleteBoardDetail">
         UPDATE 
             board 
         SET 
@@ -79,7 +81,7 @@
                 #{boardNo}
     </update>
     
-    <insert id="insertBoard">
+    <insert id="insertBoard" >
         INSERT INTO 
             board (
                 BOARD_TITLE, 

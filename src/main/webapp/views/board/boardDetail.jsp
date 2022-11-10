@@ -33,8 +33,12 @@
                                     <!-- main-content -->
                                     <div class="main-content">
                                         ${detail.boardTitle}
+                                        ${detail.boardContent}
+                                        ${detail.createDate}
+                                        ${detail.updateDate}
+                                        ${detail.readCount}
                                         ${detail.userId}
-                                        ${userId}
+                                        ${detail.userNickname}
 
 
 
