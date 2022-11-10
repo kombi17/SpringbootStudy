@@ -73,6 +73,9 @@
 
                     <%@ include file="/views/common/footer.jsp" %>
 
+
+                        <!-- common.js -->
+                        <script src="/resources/js/common.js"></script>
                         <!-- js -->
                         <script src="/resources/js/secession.js" />
                         </script>

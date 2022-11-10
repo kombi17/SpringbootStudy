@@ -60,8 +60,8 @@ public class SecurityConfiguration {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
         // 일반 사용자에 대해 session을 저장하지 않으므로 csrf를 disable 처리
-        .csrf().ignoringAntMatchers("/user/signUp").ignoringAntMatchers("/user/detail/update").and()
-        .authorizeHttpRequests((authz) -> authz
+        .csrf().ignoringAntMatchers("/user/signUp").ignoringAntMatchers("/user/detail/update")
+        .ignoringAntMatchers("/board/boardWrite").and().authorizeHttpRequests((authz) -> authz
             // .antMatchers : 페이지에 접근할 수 있는 권한 설정
             // 로그인, 회원가입, 홈 접근 허용
             .antMatchers("/", "/user/loginForm", "/user/signUpForm", "/user/signUp",

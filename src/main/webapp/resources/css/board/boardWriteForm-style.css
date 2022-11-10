@@ -1,0 +1,25 @@
+.main-container {
+  display: block;
+
+  margin-top: 130px;
+  width: 1000px;
+}
+
+.boardWrite {
+  margin: 20px 0;
+}
+
+#boardTitle {
+  font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+
+  width: 970px;
+
+  outline: none;
+  border: none;
+  border-bottom: 3px solid tomato;
+
+  margin: 0 5px;
+  padding: 0 6px;
+}

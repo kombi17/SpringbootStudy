@@ -27,4 +27,9 @@ public class BoardServiceImpl implements BoardService {
   public int deleteBoardDetail(String boardNo) {
     return boardDAO.deleteBoardDetail(boardNo);
   }
+
+  public int insertBoard(Map<String, Object> paramMap) {
+    
+    return boardDAO.insertBoard(paramMap);
+  }
 }

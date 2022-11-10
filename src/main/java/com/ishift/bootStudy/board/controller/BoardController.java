@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ishift.bootStudy.board.model.vo.BoardDetail;
 import com.ishift.bootStudy.board.model.vo.BoardList;
 import com.ishift.bootStudy.board.service.BoardServiceImpl;
+import com.ishift.bootStudy.service.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 // @RestController : @Controller + @ResponseBody
@@ -27,6 +28,9 @@ public class BoardController {
 
   @Autowired
   BoardServiceImpl boardService;
+
+  @Autowired
+  MemberServiceImpl memberService;
 
 
   @GetMapping("/boardList")
@@ -69,24 +73,38 @@ public class BoardController {
   }
 
   @PostMapping("/boardWrite")
-  public String boardWrite() {
+  public String boardWrite(@RequestParam Map<String, Object> paramMap, Principal principal,
+      RedirectAttributes ra) {
+
+    int userNo = memberService.selectLoginUser(principal.getName()).getUserNo();
+
+    paramMap.put("userNo", userNo);
 
     // 제목, 내용 받아서 DB에 저장, 이미지도 저장...
+    int boardNo = 0;
+    try {
 
-    return "board/boardList";
+      boardNo = boardService.insertBoard(paramMap);
+
+//      ra.addFlashAttribute("message", "게시글이 작성되었습니다.");
+//      ra.addFlashAttribute("message", "게시글 작성 실패!");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return "board/boardDetail/" + boardNo;
   }
-  
-  
+
+
   @GetMapping("/boardDelete/{boardNo}")
-  public String boardDelete(@PathVariable("boardNo") String boardNo,
-                            RedirectAttributes ra) {
-    
+  public String boardDelete(@PathVariable("boardNo") String boardNo, RedirectAttributes ra) {
+
     int result = boardService.deleteBoardDetail(boardNo);
-    
+
     String msg = null;
     String path = null;
-    
-    if(result > 0) {
+
+    if (result > 0) {
       msg = "게시글 삭제 완료";
       path = "redirect:/board/boardList";
     } else {
@@ -94,9 +112,9 @@ public class BoardController {
       // 어디로 갈 것인가?
       path = "board/boardDetail" + boardNo;
     }
-    
+
     ra.addAttribute("message", msg);
-    
+
     return path;
   }
 

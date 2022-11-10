@@ -12,8 +12,11 @@ public interface BoardDAO {
 
   // 게시글 상세내역 조회
   BoardDetail selectBoardDetail(String boardNo);
-  
+
   // 게시글 삭제
   int deleteBoardDetail(String boardNo);
+
+  // 게시글 삽입
+  int insertBoard(Map<String, Object> paramMap);
 
 }

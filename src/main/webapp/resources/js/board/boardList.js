@@ -132,5 +132,5 @@ $(document).ready(function () {
 });
 
 document.getElementById("goToWriteForm").addEventListener("click", function () {
-  location.replace("http://localhost:8080/board/boardWriteForm");
+  location.href = "http://localhost:8080/board/boardWriteForm";
 });

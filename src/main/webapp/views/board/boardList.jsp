@@ -85,8 +85,9 @@
                                             </table>
                                         </div>
                                         <!-- 버튼 영역 (글쓰기 버튼) -->
-                                        <div class="button-area">
-                                            <button type="button" id="goToWriteForm"> 글쓰기 </button>
+                                        <div class="btn-area" style="text-align: right;">
+                                            <button type="button" id="goToWriteForm"> 글쓰기
+                                            </button>
                                         </div>
                                     </div>
                             </div>
@@ -96,6 +97,8 @@
                     <!-- footer -->
                     <%@ include file="/views/common/footer.jsp" %>
 
+                        <!-- common.js -->
+                        <script src="/resources/js/common.js"></script>
                         <!-- boardList.js -->
                         <script src="/resources/js/board/boardList.js"></script>
 

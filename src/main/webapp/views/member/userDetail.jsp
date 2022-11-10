@@ -108,9 +108,10 @@
             <!-- 다음 주소 API -->
             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-            <!-- js -->
-            <script src="\resources\js\common.js"></script>
-            <script src="\resources\js\userDetail.js"></script>
+            <!-- common.js -->
+            <script src="/resources/js/common.js"></script>
+            <!-- userDetail.js -->
+            <script src="/resources/js/userDetail.js"></script>
         </body>
 
         </html>

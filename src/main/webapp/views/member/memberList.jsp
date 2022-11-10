@@ -122,8 +122,11 @@
           <!-- footer -->
           <%@ include file="/views/common/footer.jsp" %>
 
+            <!-- common.js -->
+            <script src="/resources/js/common.js"></script>
+
             <!-- memberList.js -->
-            <script src="\resources\js\memberList.js"></script>
+            <script src="/resources/js/memberList.js"></script>
 
         </body>
 

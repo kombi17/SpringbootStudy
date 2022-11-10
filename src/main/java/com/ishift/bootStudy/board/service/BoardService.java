@@ -15,5 +15,8 @@ public interface BoardService {
   
   // 게시글 삭제
   int deleteBoardDetail(String boardNo);
+  
+  // 게시글 삽입
+  int insertBoard(Map<String, Object> paramMap);
 
 }

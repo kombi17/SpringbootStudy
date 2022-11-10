@@ -68,7 +68,7 @@
                 #{boardNo}
     </select>
     
-    <update id="deleteBoardDetail">
+    <update id="deleteBoardDetail" useGeneratedKeys="true" keyProperty="BOARD_NO">
         UPDATE 
             board 
         SET 
@@ -78,6 +78,28 @@
             BOARD_NO = 
                 #{boardNo}
     </update>
+    
+    <insert id="insertBoard">
+        INSERT INTO 
+            board (
+                BOARD_TITLE, 
+                BOARD_CONTENT, 
+                CREATE_DATE, 
+                UPDATE_DATE, 
+                READ_COUNT, 
+                BOARD_STATEMENT, 
+                USER_NO
+                )
+	        VALUES(
+	            #{boardTitle}, 
+	            #{boardContent}, 
+	            SYSDATE(), 
+	            SYSDATE(), 
+	            DEFAULT, 
+	            DEFAULT, 
+	            #{userNo}
+	            )
+    </insert>
 
 
 </mapper>

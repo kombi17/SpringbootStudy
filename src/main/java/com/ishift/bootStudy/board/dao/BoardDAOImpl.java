@@ -10,7 +10,7 @@ import com.ishift.bootStudy.board.model.vo.BoardList;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
-  
+
   @Autowired
   private SqlSessionTemplate sqlSession;
 
@@ -29,4 +29,9 @@ public class BoardDAOImpl implements BoardDAO {
     return sqlSession.update("boardMapper.deleteBoardDetail", boardNo);
   }
 
+  @Override
+  public int insertBoard(Map<String, Object> paramMap) {
+    return sqlSession.insert("boardMapper.insertBoard", paramMap);
+  }
+  
 }

@@ -12,6 +12,7 @@
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
                     <link rel="stylesheet" href="/resources/css/common.css" />
+                    <link rel="stylesheet" href="/resources/css/board/boardWriteForm-style.css" />
 
                     <script src="https://kit.fontawesome.com/245c493145.js" crossorigin="anonymous"></script>
 
@@ -37,11 +38,11 @@
                                 <%@ include file="/views/common/sidebar.jsp" %>
                                     <!-- main-content -->
                                     <div class="main-container">
-                                        <form action="/board/write" method="post">
+                                        <form action="/board/boardWrite" method="post" onsubmit="boardValidate()">
 
                                             <div class="boardWrite">
                                                 <input type="text" id="boardTitle" name="boardTitle"
-                                                    placeholder="title">
+                                                    placeholder="제목을 입력해주세요.">
                                             </div>
 
                                             <div class="boardWrite">
@@ -51,10 +52,9 @@
                                             <div class="btn-area">
                                                 <button type="button" id="cancelBtn">취소</button>
                                                 <button type="submit" id="boardWriteBtn">글쓰기</button>
-                                                <!-- 수정일 경우 -->
+                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                    value="${_csrf.token}" />
                                             </div>
-
-
                                         </form>
                                     </div>
 
@@ -64,8 +64,11 @@
                     <!-- footer -->
                     <%@ include file="/views/common/footer.jsp" %>
 
+
+                        <!-- common.js -->
+                        <script src="/resources/js/common.js"></script>
                         <!-- boardWriteForm.js -->
-                        <script src="\resources\js\board\boardWriteForm.js"></script>
+                        <script src="/resources/js/board/boardWriteForm.js"></script>
                 </body>
 
                 </html>

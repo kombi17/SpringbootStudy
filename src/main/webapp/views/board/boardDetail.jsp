@@ -44,7 +44,7 @@
                                     <!-- 로그인 한 사용자와 글 쓴 사람이 같은 경우 -->
                                     <c:if test="${userId eq detail.userId}">
                                         <div class="btn-area">
-                                            <button type="button" id="deleteBtn" onclick="deleteDetail()">삭제</button>
+                                            <button type="button" id="deleteBtn">삭제</button>
                                             <button type="button" id="modifyBtn">수정</button>
                                         </div>
                                     </c:if>
@@ -57,10 +57,13 @@
 
                 <script>
                     const boardNo = '${ detail.boardNo }';
-
                 </script>
 
+
+                <!-- common.js -->
+                <script src="/resources/js/common.js"></script>
+
                 <!-- boardDetail.js -->
-                <script src="\resources\js\board\boardDetail.js"></script>
+                <script src="/resources/js/board/boardDetail.js"></script>
 
                 </html>
