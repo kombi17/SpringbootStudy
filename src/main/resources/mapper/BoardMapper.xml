@@ -60,6 +60,9 @@
         LEFT JOIN 
             board_img 
                 USING(BOARD_NO) 
+        JOIN 
+            user
+                USING(USER_NO)
         WHERE 
             BOARD_NO = 
                 #{boardNo}

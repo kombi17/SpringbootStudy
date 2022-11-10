@@ -76,6 +76,7 @@ public class BoardController {
     return "board/boardList";
   }
   
+  
   @GetMapping("/boardDelete/{boardNo}")
   public String boardDelete(@PathVariable("boardNo") String boardNo,
                             RedirectAttributes ra) {
@@ -87,10 +88,11 @@ public class BoardController {
     
     if(result > 0) {
       msg = "게시글 삭제 완료";
-      path = "board/boardList";
+      path = "redirect:/board/boardList";
     } else {
       msg = "게시글 삭제 실패";
       // 어디로 갈 것인가?
+      path = "board/boardDetail" + boardNo;
     }
     
     ra.addAttribute("message", msg);

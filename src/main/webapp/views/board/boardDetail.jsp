@@ -32,7 +32,9 @@
                                 <%@ include file="/views/common/sidebar.jsp" %>
                                     <!-- main-content -->
                                     <div class="main-content">
-
+                                        ${detail.boardTitle}
+                                        ${detail.userId}
+                                        ${userId}
 
 
 
@@ -40,9 +42,9 @@
 
                                     </div>
                                     <!-- 로그인 한 사용자와 글 쓴 사람이 같은 경우 -->
-                                    <c:if test="userNo eq detail.userNo">
+                                    <c:if test="${userId eq detail.userId}">
                                         <div class="btn-area">
-                                            <button type="button" id="deleteBtn">삭제</button>
+                                            <button type="button" id="deleteBtn" onclick="deleteDetail()">삭제</button>
                                             <button type="button" id="modifyBtn">수정</button>
                                         </div>
                                     </c:if>
@@ -52,5 +54,13 @@
                     <!-- footer -->
                     <%@ include file="/views/common/footer.jsp" %>
                 </body>
+
+                <script>
+                    const boardNo = '${ detail.boardNo }';
+
+                </script>
+
+                <!-- boardDetail.js -->
+                <script src="\resources\js\board\boardDetail.js"></script>
 
                 </html>
