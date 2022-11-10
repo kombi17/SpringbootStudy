@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties.AssertingParty.Verification.Credential;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -343,8 +342,7 @@ public class MemberController {
         path = "redirect:/user/loginForm";
         // 탈퇴 회원은 접근 못 하도록 (세션 종료 및 로그인 안 되도록)
         SecurityContextHolder.clearContext();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
+        // 근데 이거 로그아웃이 안 되는 것 같음... security 통해서 로그인하면 자동으로 세션으로 올라가는지 추후 확인해볼 것
 
       } else {
         msg = "회원 탈퇴에 실패했습니다. 관리자에게 문의해주세요.";
