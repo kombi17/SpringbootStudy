@@ -90,7 +90,6 @@
                         <div class="btn-area">
                           <button type="submit" class="modify-btn">회원 정보 수정</button>
                           <button type="reset" class="reset-btn">초기화</button>
-                          <button type="button" id="goToList">목록으로</button>
                           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
                         </div>

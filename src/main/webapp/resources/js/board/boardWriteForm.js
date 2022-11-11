@@ -51,24 +51,15 @@ function boardValidate() {
   const boardTitle = document.getElementById("boardTitle");
   const boardContent = document.getElementById("boardContent");
 
-  if (boardTitle.value.length != 0 && boardContent.value.length != 0) {
-    return false;
-  }
+  var bool = true;
 
-  if (boardTitle.value.length == 0) {
-    console.log("제목 빈칸");
-    return printAlert(boardTitle, "제목을 입력해주세요.");
+  if (boardTitle.value.trim() == "") {
+    alert("제목을 입력해주세요.");
+    bool = false;
   }
-
-  if (boardContent.value.length == 0) {
-    console.log("내용 빈칸");
-    return printAlert(boardContent, "내용을 입력해주세요.");
+  if (boardContent.value.trim() == "") {
+    alert("내용을 입력해주세요.");
+    bool = false;
   }
-}
-
-function printAlert(el, message) {
-  // 매개변수 el은 요소
-  alert(message);
-  el.focus();
-  return false;
+  return bool;
 }

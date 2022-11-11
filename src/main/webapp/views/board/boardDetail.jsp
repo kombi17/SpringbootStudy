@@ -40,12 +40,14 @@
                       </div>
                       <div class="board-info">
                         <p><span>작성일</span> ${detail.createDate}</p>
-                        <!-- 수정된 게시물일 경우 수정일 출력(수정 기능 미완) -->
-                        <!-- <c:if test="${!empty detail.updateDate}">
-                <p>
-                    <span>수정일</span>     ${detail.updateDate}
-                </p>
-              </c:if> -->
+
+                        <!-- 수정된 게시물일 경우 수정일 출력 -->
+                        <c:if test="${!empty detail.updateDate}">
+                          <p>
+                            <span>수정일</span> ${detail.updateDate}
+                          </p>
+                        </c:if>
+
                         <p><span>조회수</span> ${detail.readCount}</p>
                       </div>
                     </div>

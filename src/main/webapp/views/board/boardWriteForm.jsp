@@ -38,7 +38,8 @@
                                 <%@ include file="/views/common/sidebar.jsp" %>
                                     <!-- main-content -->
                                     <div class="main-container">
-                                        <form action="/board/boardWrite" method="post" onsubmit="boardValidate()">
+                                        <form action="/board/boardWrite" method="post"
+                                            onsubmit="return boardValidate()">
                                             <div class="boardWrite">
                                                 <input type="text" id="boardTitle" name="boardTitle"
                                                     placeholder="제목을 입력해주세요." autocomplete="off"
