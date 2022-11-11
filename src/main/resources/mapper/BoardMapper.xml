@@ -104,4 +104,27 @@
     </insert>
 
 
+    <update id="updateReadCount">
+        UPDATE 
+            board 
+        SET 
+            READ_COUNT = 
+                READ_COUNT + 1 
+        WHERE BOARD_NO = #{boardNo}
+    </update>
+    
+    <update id="updateBoard">
+	    UPDATE 
+	        board 
+	    SET 
+	        BOARD_TITLE = 
+	            #{boardTitle}, 
+	        BOARD_CONTENT = 
+	            #{boardContent}, 
+	        UPDATE_DATE = 
+	            SYSDATE() 
+	    WHERE 
+	        BOARD_NO = 
+	            ${boardNo}
+    </update>
 </mapper>

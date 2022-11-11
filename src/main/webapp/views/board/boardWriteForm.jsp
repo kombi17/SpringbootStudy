@@ -39,14 +39,15 @@
                                     <!-- main-content -->
                                     <div class="main-container">
                                         <form action="/board/boardWrite" method="post" onsubmit="boardValidate()">
-
                                             <div class="boardWrite">
                                                 <input type="text" id="boardTitle" name="boardTitle"
-                                                    placeholder="제목을 입력해주세요.">
+                                                    placeholder="제목을 입력해주세요." autocomplete="off"
+                                                    value="${detail.boardTitle}">
                                             </div>
 
                                             <div class="boardWrite">
-                                                <textarea name="boardContent" id="boardContent"></textarea>
+                                                <textarea name="boardContent"
+                                                    id="boardContent">${detail.boardContent}</textarea>
                                             </div>
 
                                             <div class="btn-area">
@@ -54,6 +55,8 @@
                                                 <button type="submit" id="boardWriteBtn">글쓰기</button>
                                                 <input type="hidden" name="${_csrf.parameterName}"
                                                     value="${_csrf.token}" />
+                                                <input type="hidden" name="mode" value="${mode}">
+                                                <input type="hidden" name="boardNo" value="${detail.boardNo}">
                                             </div>
                                         </form>
                                     </div>

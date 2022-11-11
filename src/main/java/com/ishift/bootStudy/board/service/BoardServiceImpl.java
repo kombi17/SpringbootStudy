@@ -32,4 +32,13 @@ public class BoardServiceImpl implements BoardService {
     
     return boardDAO.insertBoard(paramMap);
   }
+
+  public int updateReadCount(String boardNo) {
+    return boardDAO.updateReadCount(boardNo);
+  }
+
+  public int updateBoard(Map<String, Object> paramMap) {
+    System.out.println("service22222");
+    return boardDAO.updateBoard(paramMap);
+  }
 }

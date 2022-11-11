@@ -18,5 +18,11 @@ public interface BoardService {
   
   // 게시글 삽입
   int insertBoard(Map<String, Object> paramMap);
+  
+  // 조회수 증가 
+  int updateReadCount(String boardNo);
+  
+  // 게시글 수정
+  int updateBoard(Map<String, Object> paramMap);
 
 }

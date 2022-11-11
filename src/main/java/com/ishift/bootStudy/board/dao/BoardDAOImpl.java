@@ -33,5 +33,16 @@ public class BoardDAOImpl implements BoardDAO {
   public int insertBoard(Map<String, Object> paramMap) {
     return sqlSession.insert("boardMapper.insertBoard", paramMap);
   }
+
+  @Override
+  public int updateReadCount(String boardNo) {
+    return sqlSession.update("boardMapper.updateReadCount", boardNo);
+  }
+
+  @Override
+  public int updateBoard(Map<String, Object> paramMap) {
+    System.out.println("dao33333");
+    return sqlSession.update("boardMapper.updateBoard", paramMap);
+  }
   
 }

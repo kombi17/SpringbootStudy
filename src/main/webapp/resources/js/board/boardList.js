@@ -87,7 +87,7 @@ function selectBoardList() {
         {
           data: "userId",
           render: function (data, type, row) {
-            return row.userId + " (" + row.userNickname + ")";
+            return row.userNickname + "&nbsp; &nbsp;  @" + row.userId;
           },
         },
         {
@@ -132,5 +132,5 @@ $(document).ready(function () {
 });
 
 document.getElementById("goToWriteForm").addEventListener("click", function () {
-  location.href = "http://localhost:8080/board/boardWriteForm";
+  location.href = "http://localhost:8080/board/boardWriteForm?mode=insert";
 });

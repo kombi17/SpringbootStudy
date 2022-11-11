@@ -41,31 +41,7 @@ $("#boardContent").summernote({
     "50",
     "72",
   ],
-  // callbacks: {
-  //   onImageUpload: function (files, editor, welEditable) {
-  //     // 파일 업로드(다중 업로드를 위한 반복문)
-  //     for (var i = files.length - 1; i >= 0; i--) {
-  //       uploadSummernoteImageFile(files[i], this);
-  //     }
-  //   },
-  // },
 });
-
-// function uploadSummernoteImageFile(file, el) {
-//   var data = new FormData();
-//   data.append("file", file);
-//   $.ajax({
-//     url: "/boardWrite",
-//     type: "post",
-//     enctype: "multipart/form-data",
-//     data: data,
-//     success: function (data) {
-//       var json = JSON.parse(data);
-//       $(el).summernote("editor.insertImage".json["url"]);
-//       jsonArray.push(json);
-//     },
-//   });
-// }
 
 document.getElementById("cancelBtn").addEventListener("click", function () {
   location.href = "http://localhost:8080/board/boardList";
