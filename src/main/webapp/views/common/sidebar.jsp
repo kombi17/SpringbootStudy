@@ -13,13 +13,13 @@
         </div>
         <sec:authorize access="isAuthenticated()">
           <div class="sidebar-menu">
-            <a href="/user/memberList"><i class="fa-regular fa-rectangle-list"></i> User List</a>
+            <a href="/user/memberList"><i class="fa-solid fa-users"></i> User List</a>
           </div>
           <div class="sidebar-menu">
-            <a href="/board/boardList"><i class="fa-regular fa-rectangle-list"></i> 게시판</a>
+            <a href="/board/boardList"><i class="fa-regular fa-clipboard"></i> 게시판</a>
           </div>
           <div class="sidebar-menu">
-            <a href="/user/memberSecession"><i class="fa-regular fa-rectangle-list"></i> 회원 탈퇴</a>
+            <a href="/user/memberSecession"><i class="fa-solid fa-user-minus"></i> 회원 탈퇴</a>
           </div>
           <div class="sidebar-menu">
             <a href="/logout" id="logout-btn"><i class="fa-regular fa-circle-xmark"></i> logout</a>
